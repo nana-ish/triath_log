@@ -1,24 +1,44 @@
 # README
+# <ここにアプリ名を入力>
+triath_log
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+トライアスリートが、今後出場する大会を決めるための情報収集サイト
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+トライアスロンの大会を細かくレビューする。
+本気で競技を行っている人から、楽しく健康のために競技を行っている人に向けて色々な指標を取り込む。
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+私が、初めてトライアスロンを始めた時、どうやって出場する大会を決めたら良いのかわからなかったから。
+また、トライアスロンの出場費は高額であるため慎重に大会を選びたいが、参考とするサイトが少ないと思ったから。
 
-* Database initialization
+### ターゲットユーザ
 
-* How to run the test suite
+トライアスリート全般
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
 
-* Deployment instructions
+これからトライアスロンの出場する大会を決めるとき。
 
-* ...
+## 設計書
+ ・ER図<作成中>
+ ・テーブル提議書<作成中>
+ ・ワイヤーフレーム<作成中>
+
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby(ver.2.6.3),SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- IDE：Cloud9
+
+## 使用素材
+
+・photo AC
+<https://www.photo-ac.com/main/search?q=%E3%83%88%E3%83%A9%E3%82%A4%E3%82%A2%E3%82%B9%E3%83%AD%E3%83%B3&srt=dlrank&qt=&pp=70&p=1&pt=C>
