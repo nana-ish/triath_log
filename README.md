@@ -1,6 +1,5 @@
 # README
-# <ここにアプリ名を入力>
-triath_log
+# triath_log
 
 ## サイト概要
 
