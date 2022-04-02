@@ -1,5 +1,6 @@
 # README
-#アプリケーション名：triath_log
+# サイト名
+triath_log
 
 ## サイト概要
 
