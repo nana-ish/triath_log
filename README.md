@@ -1,6 +1,5 @@
 # README
-# サイト名
-triath_log
+# triath_log
 
 ## サイト概要
 
