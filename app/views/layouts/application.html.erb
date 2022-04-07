@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TriathLog</title>
+    <title>Triath Log</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+ <body class="d-flex flex-column vh-100">
+    <header class="shadow">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo_name.png') %></a>
+          <a class="navbar-brand p-3" href="/"><%= image_tag('logo_pic.png') %></a>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if end_user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to " ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to ' 投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to ' マイページ', end_user_path(end_user.id), class: 'nav-link text-dark' %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to "　新規登録", new_end_user_registration_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "　ログイン", new_end_user_session_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "　Home", root_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "　About", about_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "　rece reviews", reviews_path, class: 'nav-link text-dark' %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-3 pb-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-7 d-flex justify-content-end align-items-center">
+            <h6 class="text-white mt-2 mb-2">Triath Log. All Rights Reserved.</h6>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
+
 </html>
