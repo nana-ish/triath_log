@@ -1,0 +1,2 @@
+class ReceFavorite < ApplicationRecord
+end

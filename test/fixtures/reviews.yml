@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  end_user_id: 1
+  rece_id: 1
+  score: 1.5
+  revel: 1
+  course: 1
+  water: 1
+  sightseeing: 1
+  comment: MyText
+  is_active: false
+
+two:
+  end_user_id: 1
+  rece_id: 1
+  score: 1.5
+  revel: 1
+  course: 1
+  water: 1
+  sightseeing: 1
+  comment: MyText
+  is_active: false
