@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_06_123350) do
+ActiveRecord::Schema.define(version: 2022_04_09_022638) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 2022_04_06_123350) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "end_user_id"
+    t.integer "review_id"
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "end_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,6 +83,48 @@ ActiveRecord::Schema.define(version: 2022_04_06_123350) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
+  end
+
+  create_table "rece_favorites", force: :cascade do |t|
+    t.integer "district_id"
+    t.integer "end_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reces", force: :cascade do |t|
+    t.integer "district_id"
+    t.string "name"
+    t.date "date"
+    t.integer "cost"
+    t.date "deadline"
+    t.text "link"
+    t.string "categorie"
+    t.string "venue"
+    t.text "introduction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "review_favorites", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "end_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "end_user_id"
+    t.integer "rece_id"
+    t.float "score"
+    t.integer "revel"
+    t.integer "course"
+    t.integer "water"
+    t.integer "sightseeing"
+    t.text "comment"
+    t.boolean "is_active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -4,7 +4,7 @@ class CreateReces < ActiveRecord::Migration[6.1]
       t.integer :district_id
       t.string :name
       t.date :date
-      t.intger :cost
+      t.integer :cost
       t.date :deadline
       t.text :link
       t.string :categorie
