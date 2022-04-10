@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 # 管理者用各機能ルーティング
   namespace :admin do
     root to: "homes#top"
-    resources :reces,only:[:new,:index,:edit,:create,:destroy,:update]
+    resources :races,only:[:new,:index,:edit,:create,:destroy,:update]
     resources :end_users,only:[:show,:index,:edit,:update]
     resources :reviews,only:[:update,:edit]
   end
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'about'=>"homes#about"
     resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]
-    resources :reces,only:[:show,:index]
+    resources :races,only:[:show,:index]
     resources :end_users,only:[:show,:edit,:update]
     get 'end_users/unsubscribe'
     get 'end_users/withdraw'

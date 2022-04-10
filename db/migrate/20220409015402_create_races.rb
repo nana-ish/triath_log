@@ -1,6 +1,6 @@
-class CreateReces < ActiveRecord::Migration[6.1]
+class CreateRaces < ActiveRecord::Migration[6.1]
   def change
-    create_table :reces do |t|
+    create_table :races do |t|
       t.integer :district_id
       t.string :name
       t.date :date

@@ -1,6 +1,6 @@
-class CreateReceFavorites < ActiveRecord::Migration[6.1]
+class CreateRaceFavorites < ActiveRecord::Migration[6.1]
   def change
-    create_table :rece_favorites do |t|
+    create_table :race_favorites do |t|
       t.integer :district_id
       t.integer :end_user_id
 

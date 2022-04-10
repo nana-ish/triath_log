@@ -2,7 +2,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
   def change
     create_table :reviews do |t|
       t.integer :end_user_id
-      t.integer :rece_id
+      t.integer :race_id
       t.float :score
       t.integer :revel
       t.integer :course

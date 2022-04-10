@@ -1,4 +1,4 @@
-class Admin::RecesController < ApplicationController
+class Admin::RacesController < ApplicationController
   def new
   end
 
