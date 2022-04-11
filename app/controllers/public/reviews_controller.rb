@@ -3,6 +3,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
+    @districts = District.all 
+    @races = Race.all
+    
   end
 
   def show

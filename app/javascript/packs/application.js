@@ -17,3 +17,15 @@ import '@fortawesome/fontawesome-free/js/all'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+$(document).on('turbolinks:load', function() {
+
+  // Header Auto Padding
+  $(window).resize(function() {
+    //リサイズされたときの処理
+    var navbarHeight = $(".navbar").outerHeight()
+    $("body").css("padding-top", navbarHeight + "px")
+  });
+
+});

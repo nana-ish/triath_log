@@ -5,10 +5,11 @@ class Race < ApplicationRecord
   has_many:reviews, dependent: :destroy
   belongs_to:district
 
+  has_one_attached :race_image
 
   def get_race_image(width, height)
     unless race_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpeg')
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
       race_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type:'image/jpeg')
     end
       race_image.variant(resize_to_fit:[width, height]).processed

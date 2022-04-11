@@ -1,2 +1,54 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class ="col-md-3">
+       <table class="table mt-4">
+        <thead>
+          <tr>
+            <th class="text-center">地域で探す</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @districts.each do |destrict| %>
+          <tr>
+            <td class="text-center"><%= link_to "#{destrict.name}",reviews_path %></td>
+          </tr>
+          <% end %>
+        <tbody>
+      </table>
+    </div>
+
+    <div class="col-md-9">
+      <% @races.each do |race| %>
+      <div class= "border rounded">
+        <div class= "row">
+          <div class="col-md-12 m-2">
+          <p class="h3 text-center"><%= race.name %></p>
+          <p class="text-center">レビュー：件</p>
+          </div>
+        </div>
+        <div class= "row">
+          <div class="col-md-4 m-2">
+            <div class="center">
+             <%= image_tag race.get_race_image(200,200) %>
+            </div>
+          </div>
+          <div class="col-md-4 m-2">
+             <p class="text-center"> 平均評価</p>
+             <p class="text-center"> レベル</p>
+             <p class="text-center"> コースの起伏</p>
+             <p class="text-center"> 観光スポット</p>
+          </div>
+        </div>
+        <!--<div class="row">-->
+        <!--  <div class="col-md-9 m-2">-->
+        <!--     <p class="text-left"> 開催地：<%#=race.venue %></p>-->
+        <!--     <p class="text-left"> 種目：<%#=race.categorie %></p>-->
+        <!--     <p class="text-left"> 出場費：<%#=race.cost %>円</p>-->
+        <!--     <p class="text-left"> <%#=race.introduction %></p>-->
+        <!--  </div>-->
+        <!--</div>-->
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
