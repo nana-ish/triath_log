@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_063250) do
     t.integer "course"
     t.integer "water"
     t.integer "sightseeing"
+    t.string "title"
     t.text "comment"
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false

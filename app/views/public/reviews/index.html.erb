@@ -22,7 +22,7 @@
       <div class= "border rounded">
         <div class= "row">
           <div class="col-md-12 m-2">
-          <p class="h3 text-center"><%= race.name %></p>
+          <p class="h3 text-center"><%= link_to race.name,review_path(race) %></p>
           <p class="text-center">レビュー：件</p>
           </div>
         </div>
@@ -39,16 +39,9 @@
              <p class="text-center"> 観光スポット</p>
           </div>
         </div>
-        <!--<div class="row">-->
-        <!--  <div class="col-md-9 m-2">-->
-        <!--     <p class="text-left"> 開催地：<%#=race.venue %></p>-->
-        <!--     <p class="text-left"> 種目：<%#=race.categorie %></p>-->
-        <!--     <p class="text-left"> 出場費：<%#=race.cost %>円</p>-->
-        <!--     <p class="text-left"> <%#=race.introduction %></p>-->
-        <!--  </div>-->
-        <!--</div>-->
       </div>
       <% end %>
+      <%=link_to "レビューを書く",new_review_path, class: "btn btn-lg btn-success"  %>
     </div>
   </div>
 </div>

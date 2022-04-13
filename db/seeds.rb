@@ -22,7 +22,7 @@ Race.create!(district_id:8,
              cost:28000,
              deadline:"2021-12-24",
              link:"https://ishigaki-triathlon.jp/",
-             categorie:"スタンダードディスタンス51.5km（スイム1.5㎞,バイク40㎞,ラン10㎞）",
+             categorie:"スタンダード(swim:1.5㎞,bike:40㎞,run:10㎞）",
              venue:"沖縄県石垣市",
              introduction:"日本屈指の綺麗な海で、全力を尽くしましょう!!",
 )

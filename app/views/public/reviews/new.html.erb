@@ -1,2 +1,66 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mt-5">
+      <h3>レビュー投稿フォーム</h3>
+      <%= form_with model: @review ,url:reviews_path,local: true do|f| %>
+        <div class="row mt-3">
+            <div class="col-md-3 text-right">大会名：</div>
+            <div class="col-md-5 text-left">
+          <%= f.collection_select :race_id ,Race.all, :id, :name, include_blank:"選択して下さい" %><br>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8 text-center">
+               <p class>総合点</p>
+               <div class="center">０点<%= f.range_field :score,:value => 1, :step => 1, :in => 0..5, :disabled => true %>５点</div>
+            </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-8 text-center">
+             <p class>レベル</p>
+             <div class="center">初心者向け<%= f.range_field :revel,step:1,min:0,max:5 %>上級者向け</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-8 text-center">
+             <p class>コースの起伏</p>
+             <div class="center">平坦<%= f.range_field :course,step:1,min:0,max:5 %>激しい</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-8 text-center">
+             <p class>水質</p>
+             <div class="center">濁りあり<%= f.range_field :water,step:1,min:0,max:5 %>良好</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-8 text-center">
+             <p class>観光スポット</p>
+             <div class="center">少ない<%= f.range_field :sightseeing,step:1,min:0,max:5 %>多い</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-8 text-center">
+           <%= f.text_field :title, autocomplete: "title", class: "form-control",placeholder: 'タイトル' %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12 text-center">
+           <%= f.text_area :introduction,:size => "70x10", class: "form-control",placeholder: 'レースの感想等お書きください' %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12 text-center">
+           <%= f.file_field :review_image, accept: "image/*" %>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12 text-center">
+           <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+           <%= f.submit '投稿する', class: "btn btn-primary" %>
+           </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

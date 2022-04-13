@@ -8,6 +8,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :course
       t.integer :water
       t.integer :sightseeing
+      t.string :title
       t.text :comment
       t.boolean :is_active
 
