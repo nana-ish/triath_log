@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 mt-5">
-      <h3>レビュー投稿フォーム</h3>
+      <h3>レース登録</h3>
         <%= form_with model: @race,url:admin_races_path,local: true do|f| %>
           <%= f.collection_select :district_id ,District.all, :id, :name, include_blank:"選択して下さい" %><br>
           <%= f.text_field :name, autocomplete: "name", class: "form-control",placeholder: '例：〇〇トライアスロン' %>
@@ -12,11 +12,11 @@
           <%= f.text_field :categorie, autocomplete: "categorie", class: "form-control",placeholder: '例:スタンダード(swim:1.5㎞,bike:40㎞,run:10㎞）' %>
           <%= f.text_field :venue, autocomplete: "venue", class: "form-control",placeholder: '例：〇〇県〇〇市' %>
           <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control",placeholder: 'レースの説明等を記入してください' %>
-          <%= f.label :is_active, '公開する', value: 1 %>
-          <%= f.radio_button :is_active, '1' %>
-          <%= f.label :is_active, '非公開にする', value: 0 %>
-          <%= f.radio_button :is_active, '0' %>
-          <%= f.file_field :race_image, accept: "image/*" %>
+          <%= f.radio_button :is_active, 'true' %>
+          <%= f.label :is_active, '公開する', value: true %>
+          <%= f.radio_button :is_active, 'false' %>
+          <%= f.label :is_active, '非公開にする', value: false %><br>
+          <%= f.file_field :race_image, accept: "image/*" %><br>
           <%= f.submit '投稿する', class: "btn btn-primary" %>
         <% end %>
     </div>

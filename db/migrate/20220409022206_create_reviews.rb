@@ -10,7 +10,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :sightseeing
       t.string :title
       t.text :comment
-      t.boolean :is_active
+      t.boolean :is_active,default: true, null: true
 
       t.timestamps
     end

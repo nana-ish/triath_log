@@ -1,2 +1,38 @@
-<h1>Admin::EndUsers#index</h1>
-<p>Find me in app/views/admin/end_users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mt-5">
+      <h3>利用者一覧</h3>
+      <table class="table mt-4">
+          <thead>
+            <tr>
+              <th class="text-center"></th>
+              <th class="text-center">登録日</th>
+              <th class="text-center">名前</th>
+              <th class="text-center">メールアドレス</th>
+              <th class="text-center"> 利用中/退会済み</th>
+              <th class="text-center"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @end_users.each do |end_user| %>
+              <tr>
+                <td class="text-center">
+                  <%=link_to admin_end_user_path(end_user)do%>
+                    <%= image_tag end_user.get_end_user_image(70,70) %>
+                  <% end %>
+                </td>
+                <td class="text-center"><%= end_user.created_at %></td>
+                <td class="text-center"><%=link_to end_user.name,admin_end_user_path(end_user) %></td>
+                <td class="text-center"><%= end_user.email %></td>
+                <% if end_user.is_deleted == true %>
+                  <td class="text-center">退会済み </td>
+                <% elsif %>
+                  <td class="text-center">利用中 </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

@@ -32,3 +32,10 @@ Admin.create!(
     email: 'admin@admin.com',
     password: '123456',
 )
+
+EndUser.create!(
+    email: 'triathlon@.com',
+    password: '123456',
+    name:"トライアスロン　太郎"
+)
+

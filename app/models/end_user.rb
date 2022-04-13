@@ -10,10 +10,11 @@ class EndUser < ApplicationRecord
   has_many:review_favorites, dependent: :destroy
   has_many:rece_favorites,dependent: :destroy
 
+  has_one_attached :end_user_image
 
   def get_end_user_image(width, height)
     unless end_user_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpeg')
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
       end_user_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type:'image/jpeg')
     end
       end_user_image.variant(resize_to_fit:[width, height]).processed

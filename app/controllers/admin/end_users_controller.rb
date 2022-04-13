@@ -3,6 +3,7 @@ class Admin::EndUsersController < ApplicationController
   end
 
   def index
+    @end_users = EndUser.all
   end
 
   def edit
