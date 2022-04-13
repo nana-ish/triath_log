@@ -10,6 +10,7 @@ class CreateRaces < ActiveRecord::Migration[6.1]
       t.string :categorie
       t.string :venue
       t.text :introduction
+      t.boolean :is_active,default: true, null: true
 
       t.timestamps
     end

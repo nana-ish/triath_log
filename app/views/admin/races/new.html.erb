@@ -1,2 +1,24 @@
-<h1>Admin::Reces#new</h1>
-<p>Find me in app/views/admin/reces/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mt-5">
+      <h3>レビュー投稿フォーム</h3>
+        <%= form_with model: @race,url:admin_races_path,local: true do|f| %>
+          <%= f.collection_select :district_id ,District.all, :id, :name, include_blank:"選択して下さい" %><br>
+          <%= f.text_field :name, autocomplete: "name", class: "form-control",placeholder: '例：〇〇トライアスロン' %>
+          <%= f.date_field :date, autocomplete: "date", class: "form-control" %>
+          <%= f.date_field :deadline, autocomplete: "deadline", class: "form-control" %>
+          <%= f.text_field :cost, autocomplete: "cost", class: "form-control",placeholder: '例：30,000' %>
+          <%= f.text_field :link, autocomplete: "link", class: "form-control",placeholder: '公式サイトのリンクのurlを記入してください' %>
+          <%= f.text_field :categorie, autocomplete: "categorie", class: "form-control",placeholder: '例:スタンダード(swim:1.5㎞,bike:40㎞,run:10㎞）' %>
+          <%= f.text_field :venue, autocomplete: "venue", class: "form-control",placeholder: '例：〇〇県〇〇市' %>
+          <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control",placeholder: 'レースの説明等を記入してください' %>
+          <%= f.label :is_active, '公開する', value: 1 %>
+          <%= f.radio_button :is_active, '1' %>
+          <%= f.label :is_active, '非公開にする', value: 0 %>
+          <%= f.radio_button :is_active, '0' %>
+          <%= f.file_field :race_image, accept: "image/*" %>
+          <%= f.submit '投稿する', class: "btn btn-primary" %>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -20,13 +20,12 @@ class Race < ApplicationRecord
     race_date = race.date
     deadline = race.deadline
     if (now < deadline)
-      return "0"
+      z
     elsif (now > deadline) && (now < race_date)
       return "1"
     elsif (now > race_date)
       return "2"
     end
   end
-
 
 end

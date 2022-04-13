@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_063250) do
     t.string "categorie"
     t.string "venue"
     t.text "introduction"
+    t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

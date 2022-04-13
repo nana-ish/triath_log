@@ -1,2 +1,33 @@
-<h1>Admin::Reces#show</h1>
-<p>Find me in app/views/admin/reces/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mt-5">
+      <p class="h3">登録レース情報</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="center">
+        <%= image_tag @race.get_race_image(350,350) %>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <p class="text-left">開催予定日：<%= @race.date %></p>
+      <p class="text-left">申し込み締め切り日：<%= @race.deadline %></p>
+      <p class="text-left">開催地：<%= @race.venue %></p>
+      <p class="text-left">地域：<%= @race.district.name %></p>
+      <p class="text-left">出場費(税込み)：<%= @race.cost %> 円</p>
+      <p class="text-left">開催種目：<%= @race.categorie %></p>
+      <p class="text-left">公式サイト：<%= link_to @race.link,@race.link %></p>
+      <%if @race.is_active %>
+        <p class="text-left">公開ステータス：公開中</p>
+      <% else %>
+        <p class="text-left">公開ステータス：非公開中</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to "登録情報を変更する" ,edit_admin_race_path %>
+    </div>
+  </div>
+</div>
