@@ -5,6 +5,7 @@ class Public::ReviewsController < ApplicationController
     @end_user = current_end_user
   end
 
+
   def index
     @districts = District.all
     @races = Race.all
