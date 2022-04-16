@@ -18,7 +18,14 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+//require("@rails/ujs").start()
+//require("turbolinks").start()
+//require("@rails/activestorage").start()
+//require("channels")
 
+//require("jquery")
+
+/**
 $(document).on('turbolinks:load', function() {
 
   // Header Auto Padding
@@ -29,3 +36,6 @@ $(document).on('turbolinks:load', function() {
   });
 
 });
+*/
+window.$ = window.jQuery = require('jquery');
+require('packs/raty')

@@ -16,32 +16,25 @@
         <tbody>
       </table>
     </div>
-
     <div class="col-md-9">
       <% @races.each do |race| %>
       <div class= "border rounded">
         <div class= "row">
           <div class="col-md-12 m-2">
           <p class="h3 text-center"><%= link_to race.name,review_path(race) %></p>
-          <p class="text-center">レビュー：件</p>
+          <p class="text-center">レビュー：<%=race.reviews.count %>件</p>
           </div>
         </div>
         <div class= "row">
-          <div class="col-md-4 m-2">
-            <div class="center">
-             <%= image_tag race.get_race_image(200,200) %>
-            </div>
+          <div class="col-md-4">
+             <%= image_tag race.get_race_image(200,200),class: "mx-auto d-block"%>
           </div>
           <div class="col-md-4 m-2">
-             <p class="text-center"> 平均評価</p>
-             <p class="text-center"> レベル</p>
-             <p class="text-center"> コースの起伏</p>
-             <p class="text-center"> 観光スポット</p>
           </div>
         </div>
       </div>
       <% end %>
-      <%=link_to "レビューを書く",new_review_path, class: "btn btn-lg btn-success"  %>
+      <div class="text-center mt-5"> <%=link_to "レビューを書く",new_review_path, class: "btn btn-primary" %></div>
     </div>
   </div>
 </div>

@@ -21,7 +21,7 @@
                     <%= image_tag end_user.get_end_user_image(70,70) %>
                   <% end %>
                 </td>
-                <td class="text-center"><%= end_user.created_at %></td>
+                <td class="text-center"><%= end_user.created_at.strftime('%Y/%m/%d') %></td>
                 <td class="text-center"><%=link_to end_user.name,admin_end_user_path(end_user) %></td>
                 <td class="text-center"><%= end_user.email %></td>
                 <% if end_user.is_deleted == true %>

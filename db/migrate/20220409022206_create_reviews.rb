@@ -4,10 +4,10 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :end_user_id
       t.integer :race_id
       t.float :score
-      t.integer :revel
-      t.integer :course
-      t.integer :water
-      t.integer :sightseeing
+      t.float  :level
+      t.float  :course
+      t.float  :water
+      t.float  :sightseeing
       t.string :title
       t.text :comment
       t.boolean :is_active,default: true, null: true

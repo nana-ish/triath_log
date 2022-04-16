@@ -14,7 +14,7 @@ class Public::ReviewsController < ApplicationController
     @race = Race.find_by(params[:race_id])
     @reviews = @race.reviews
     @ave_score = @race.reviews.average(:score)
-    @ave_revel = @race.reviews.average(:revel)
+    @ave_level = @race.reviews.average(:level)
     @ave_course = @race.reviews.average(:course)
     @ave_water = @race.reviews.average(:water)
     @ave_sightseeing = @race.reviews.average(:sightseeing)
@@ -42,7 +42,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:end_user_id,:race_id,:score,:revel,:course,:water,:sightseeing,:title,:comment,:review_image)
+    params.require(:review).permit(:end_user_id,:race_id,:score,:level,:course,:water,:sightseeing,:title,:comment,:review_image)
   end
 
 end

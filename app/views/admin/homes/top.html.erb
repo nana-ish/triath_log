@@ -16,7 +16,7 @@
           <tbody>
             <% @races.each do |race| %>
               <tr>
-                <td class="text-center"><%= race.date %></td>
+                <td class="text-center"><%= race.date.strftime('%Y/%m/%d') %></td>
                 <td class="text-center"><%= link_to race.name,race.link %></td>
                 <td class="text-center"><%= race.deadline %></td>
                 <% if race.get_race_situation(race) == "0" %>

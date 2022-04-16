@@ -6,9 +6,9 @@ class EndUser < ApplicationRecord
 
   # ER図参照
   has_many:reviews, dependent: :destroy
-  has_many:comments, dependent: :destroy
-  has_many:review_favorites, dependent: :destroy
-  has_many:rece_favorites,dependent: :destroy
+  # has_many:comments, dependent: :destroy
+  # has_many:review_favorites, dependent: :destroy
+  # has_many:rece_favorites,dependent: :destroy
 
   has_one_attached :end_user_image
 

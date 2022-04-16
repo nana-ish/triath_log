@@ -1,2 +1,27 @@
-<h1>Admin::EndUsers#show</h1>
-<p>Find me in app/views/admin/end_users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <p class="h3 bg-light text-center">ユーザー詳細</p>
+      <div class="row">
+        <div class="col-md-4 mt-4 border mx-auto">
+          <p class="h4 text-center mt-2">ユーザー情報</p>
+            <%= image_tag @end_user.get_end_user_image(200,200), class: "mx-auto d-block"%>
+            <div>ユーザー名：<%= @end_user.name %></div>
+            <div>ユーザー名：<%= @end_user.email %></div>
+            <div>レビュー件数：<%= @end_user.reviews.count %></div>
+        </div>
+        <div class="col-md-8 mt-4">
+         <p class="h4 text-center ">レビュー一覧</p>
+           <% @reviews.each do |review| %>
+             <%= review.title %>
+             <%= review.score %>
+             <%= review.course %>
+             <%= review.water %>
+             <%= review.sightseeing %>
+             <%= review.comment %>
+             <%= review.is_active %>
+           <% end %>
+        </div>
+    </div>
+  </div>
+</div>

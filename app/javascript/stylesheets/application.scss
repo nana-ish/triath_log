@@ -11,6 +11,10 @@ body {
   height: calc(100vh - 120px - 67px);
 }
 
+.marker-border-blue{
+    background:linear-gradient(transparent 50%, #f0f8ff 0%);
+}
+
 @media screen and (max-width: 1199.98px) {
   .w-lg-responsive {
     width: auto;

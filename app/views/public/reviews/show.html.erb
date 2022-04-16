@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <p class="text-left"><span class="h4"><%= @race.name %></span>(<%= @reviews.count %>件のレビュー)</p>
+      <p class="text-center bg-light"><span class="h4"><%= @race.name %></span>(<%= @reviews.count %>件のレビュー)</p>
     </div>
+  </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 ">
       <p class="text-left">開催地：<%= @race.venue %></p>
       <p class="text-left">出場費：<%= @race.cost %> 円</p>
       <p class="text-left">開催種目：<%= @race.categorie %></p>
@@ -12,13 +13,87 @@
       <p class="text-left">公式サイト：<%= link_to @race.name,@race.link %></p>
     </div>
     <div class="col-md-6">
-      <p class="text-left">総合評価：<%= @ave_score %>点</p>
-      <p class="text-left">大会レベル：<%= @ave_revel  %> </p>
-      <p class="text-left">コースの起伏：<%= @ave_course %></p>
-      <p class="text-left">水質：<%= @ave_water %></p>
-      <p class="text-left">観光：<%= @ave_sightseeing %></p>
+      <%= render 'avarage', race: @race,ave_score: @ave_score, ave_level: @ave_level,
+      ave_course: @ave_course, ave_water: @ave_water, ave_sightseeing: @ave_sightseeing %>
     </div>
   </div>
-  <div class="row">
-  </div>
+  <% @reviews.each do |review| %>
+   <div class ="row">
+     <div class="col-md-3 border mt-3">
+       <%= image_tag review.end_user.get_end_user_image(180,180), class: "mx-auto d-block"%>
+       <p class="text-center"><%= review.end_user.name %>さん</p>
+       <p class="text-center">投稿日:<%= review.created_at.strftime('%Y/%m/%d')%></p>
+     </div>
+     <div class="col-md-9 border mt-3 ">
+       <p class="text-left h4 mt-2"><%= review.title %></p>
+       <div class ="row">
+         <div class="col-md-7">
+           <p class="text-left">総合評価：<span id="score-rate-<%= review.id %>"></span></p>
+           <p class="text-left">大会レベル：<span id="level-rate-<%= review.id %>"></span></p>
+           <p class="text-left">コースの起伏：<span id="course-rate-<%= review.id %>"></span></p>
+           <p class="text-left">水質：<span id="water-rate-<%= review.id %>"></span></p>
+           <p class="text-left">観光：<span id="sightseeing-rate-<%= review.id %>"></span></p>
+         </div>
+         <div class="col-md-5">
+            <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
+         </div>
+         <div class ="row">
+           <div class="col-md-12">
+            <p class="text-left mx-3"><%= review.comment %></p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <script>
+     document.addEventListener("turbolinks:load", function(){
+      $('#score-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.score %>,
+       });
+      $('#level-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.level%>,
+       });
+      $('#course-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.course %>,
+       });
+       $('#water-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.water %>,
+       });
+       $('#sightseeing-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.sightseeing %>,
+       });
+     })
+   </script>
+ <% end %>
+  <div class="text-center m-5"><%=link_to "一覧に戻る",reviews_path,class: "btn btn-primary"%></div>
 </div>

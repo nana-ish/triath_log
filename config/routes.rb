@@ -32,9 +32,11 @@ Rails.application.routes.draw do
     get 'about'=>"homes#about"
     resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]
     resources :races,only:[:show,:index]
-    resources :end_users,only:[:show,:edit,:update]
-    get 'end_users/unsubscribe'
-    get 'end_users/withdraw'
+    resources :end_users,only:[:index,:show,:edit,:update,:destroy] do
+      resources :comments,only:[:index,:show,:edit,:update]
+      resources :race_favorites,only:[:index,:show,:edit,:update]
+      resources :review_favorites,only:[:index,:show,:edit,:update]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

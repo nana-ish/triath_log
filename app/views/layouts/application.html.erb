@@ -20,7 +20,7 @@
                 <% if end_user_signed_in? %>
                   <div class = "text-center">
                     <p class><p>
-                    <p class>user name：<%= current_end_user.name %><p>
+                    <p class><%#= current_end_user.name %><p>
                   </div>
                 <% end %>
                 <% if admin_signed_in? %>
@@ -86,12 +86,13 @@
       </nav>
     </header>
     <main class="mb-auto">
+    <p class="mt-2 ml-2"><%= notice %></p>
     <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-3 pb-3 fixed-bottom">
       <div class="container">
         <div class="row">
-          <div class="col-7 d-flex justify-content-end align-items-center">
+          <div class="col-md-7 d-flex justify-content-end align-items-center">
             <h6 class="text-white mt-2 mb-2">Triath Log. All Rights Reserved.</h6>
           </div>
         </div>
