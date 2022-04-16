@@ -3,7 +3,7 @@ class Race < ApplicationRecord
   #ER図参照
   has_many:race_favorites, dependent: :destroy
   has_many:reviews, dependent: :destroy
-  belongs_to:district
+  belongs_to :district
 
   has_one_attached :race_image
 

@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-3 mt-1">
-      <%= render "end_user_info",end_user: @end_user %>
-    </div>
+    <div class="col-md-3 mt-1"><%= render "public/homes/end_user_info",end_user: @end_user %> </div>
     <div class="col-md-9">
+      <p class="text-center marker-border-blue h3">レビュー一覧</h>
+       <% @reviews.each do |review| %>
+       <% end %>
     </div>
   </div>
 </div>

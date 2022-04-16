@@ -8,6 +8,10 @@ class Public::ReviewsController < ApplicationController
   def index
     @districts = District.all
     @races = Race.all
+    if params[:district_id]
+       @district = District.find(params[:district_id])
+       @races = @district.races.order(created_at: :desc).all
+    end
   end
 
   def show

@@ -20,7 +20,7 @@
   <% @reviews.each do |review| %>
    <div class ="row">
      <div class="col-md-3 border mt-3">
-       <%= image_tag review.end_user.get_end_user_image(180,180), class: "mx-auto d-block"%>
+       <%= image_tag review.end_user.get_end_user_image(180,180), class: "mx-auto d-block mt-3"%>
        <p class="text-center"><%= review.end_user.name %>さん</p>
        <p class="text-center">投稿日:<%= review.created_at.strftime('%Y/%m/%d')%></p>
      </div>
@@ -47,6 +47,7 @@
    </div>
    <script>
      document.addEventListener("turbolinks:load", function(){
+      $('#score-rate-<%= review.id %>').empty();
       $('#score-rate-<%= review.id %>').raty({
            size: 36,
            starOff: "<%= asset_path('star-off.png') %>",
@@ -56,6 +57,7 @@
            readOnly: true,
            score: <%= review.score %>,
        });
+      $('#level-rate-<%= review.id %>').empty();
       $('#level-rate-<%= review.id %>').raty({
            size: 36,
            starOff: "<%= asset_path('star-off.png') %>",
@@ -65,6 +67,7 @@
            readOnly: true,
            score: <%= review.level%>,
        });
+      $('#course-rate-<%= review.id %>').empty();
       $('#course-rate-<%= review.id %>').raty({
            size: 36,
            starOff: "<%= asset_path('star-off.png') %>",
@@ -74,6 +77,7 @@
            readOnly: true,
            score: <%= review.course %>,
        });
+       $('#water-rate-<%= review.id %>').empty();
        $('#water-rate-<%= review.id %>').raty({
            size: 36,
            starOff: "<%= asset_path('star-off.png') %>",
@@ -83,6 +87,7 @@
            readOnly: true,
            score: <%= review.water %>,
        });
+       $('#sightseeing-rate-<%= review.id %>').empty();
        $('#sightseeing-rate-<%= review.id %>').raty({
            size: 36,
            starOff: "<%= asset_path('star-off.png') %>",

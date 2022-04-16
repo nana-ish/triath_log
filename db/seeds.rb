@@ -27,6 +27,16 @@ Race.create!(district_id:8,
              venue:"沖縄県石垣市",
              introduction:"日本屈指の綺麗な海で、全力を尽くしましょう!!",
 )
+Race.create!(district_id:1,
+             name:"北海道トライアスロン",
+             date:"2022-4-17",
+             cost:28000,
+             deadline:"2021-12-24",
+             link:"https://ishigaki-triathlon.jp/",
+             categorie:"スタンダード(swim:1.5㎞,bike:40㎞,run:10㎞）",
+             venue:"北海道札幌市",
+             introduction:"全力を尽くしましょう!!",
+)
 
 Admin.create!(
     email: 'admin@admin.com',
