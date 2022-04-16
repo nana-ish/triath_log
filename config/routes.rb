@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'reviews/index'
+    get 'reviews/show'
+    get 'reviews/update'
+    get 'reviews/edit'
+  end
 # 管理者用ログイン機能
 # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -8,16 +14,16 @@ Rails.application.routes.draw do
 # エンドユーザー用ログイン機能
 # URL /end_user/sign_in ...
   devise_for :end_users,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
   }
 
 # 管理者用各機能ルーティング
   namespace :admin do
     root to: "homes#top"
-    resources :reces,only:[:new,:index,:edit,:create,:destroy,:update]
+    resources :races,only:[:new,:show,:index,:edit,:create,:destroy,:update]
     resources :end_users,only:[:show,:index,:edit,:update]
-    resources :reviews,only:[:update,:edit]
+    resources :reviews,only:[:index,:show,:update,:edit]
   end
 
 # 管理者用各機能ルーティング
@@ -25,10 +31,12 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get 'about'=>"homes#about"
     resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]
-    resources :reces,only:[:show,:index]
-    resources :end_users,only:[:show,:edit,:update]
-    get 'end_users/unsubscribe'
-    get 'end_users/withdraw'
+    resources :races,only:[:show,:index]
+    resources :end_users,only:[:index,:show,:edit,:update,:destroy] do
+      resources :comments,only:[:index,:show,:edit,:update]
+      resources :race_favorites,only:[:index,:show,:edit,:update]
+      resources :review_favorites,only:[:index,:show,:edit,:update]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

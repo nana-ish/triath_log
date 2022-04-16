@@ -1,2 +1,91 @@
-<h1>Public::Reviews#new</h1>
-<p>Find me in app/views/public/reviews/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <p class ="h3 text-left">レビュー投稿フォーム</p>
+     </div>
+  </div>
+  <div class="row">
+    <%= form_with model: @review ,url:reviews_path,local: true do|f| %>
+      <%= f.collection_select :race_id ,Race.all, :id, :name, include_blank:"選択して下さい" %><br>
+    　<!--*************総合点*********************-->
+      <div class="field" id="score">
+        <%= f.label :score, "総合点：" %>
+        <%= f.hidden_field :score, id: :review_id %>
+      </div>
+      <!--*************レベル*********************-->
+      <div class="field" id="level">
+        <%= f.label :level, "レベル：" %>
+        <%= f.hidden_field :level, id: :review_id %>
+      </div>
+      <!--*************コースの起伏*********************-->
+      <div class="field" id="course">
+        <%= f.label :course, "コースの起伏：" %>
+        <%= f.hidden_field :course, id: :review_id %>
+      </div>
+      <!--*************水質*********************-->
+      <div class="field" id="water">
+        <%= f.label :water, "水質：" %>
+        <%= f.hidden_field :water, id: :review_id %>
+      </div>
+      <!--*************観光スポット*********************-->
+      <div class="field" id="sightseeing">
+        <%= f.label :sightseeing, "観光スポット：" %>
+        <%= f.hidden_field :sightseeing, id: :review_id %>
+      </div>
+      <%= f.text_field :title, autocomplete: "title", class: "form-control",placeholder: 'タイトル' %>
+      <%= f.text_area :comment,:size => "70x10", class: "form-control",placeholder: 'レースの感想等お書きください' %>
+      <%= f.file_field :review_image, accept: "image/*" %>
+      <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+      <%= f.submit '投稿する', class: "btn btn-primary" %>
+  </div>
+</div>
+<script>
+// 画面が出来上がったときをトリガーとして
+document.addEventListener("turbolinks:load", function(){
+$('#score').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[score]',
+  half: true,
+});
+
+$('#level').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[level]',
+  half: true,
+});
+
+$('#course').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[course]',
+  half: true,
+  });
+
+$('#water').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[water]',
+  half: true,
+  });
+
+$('#sightseeing').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: '<%= asset_path('star-half.png') %>',
+  scoreName: 'review[sightseeing]',
+  half: true,
+  });
+})
+</script>
+<% end %>

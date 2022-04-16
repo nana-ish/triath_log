@@ -1,0 +1,62 @@
+<!--全ての平均評価-->
+<p class="text-left">総合評価：<span id="ave-score-rate-<%= race.id %>"></span></p>
+<p class="text-left">大会レベル：初心者 <span id="ave-level-rate-<%= race.id %>"></span>上級者</p>
+<p class="text-left">コースの起伏：平坦<span id="ave-course-rate-<%= race.id %>"></span>激しい</p>
+<p class="text-left">水質：濁りあり<span id="ave-water-rate-<%= race.id %>"></span>綺麗</p>
+<p class="text-left">観光：少ない<span id="ave-sightseeing-rate-<%= race.id %>"></span>多い</p>
+
+
+<script>
+document.addEventListener("turbolinks:load", function(){
+      $('#ave-score-rate-<%= race.id %>').empty();
+      $('#ave-score-rate-<%= race.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: <%= ave_score %>,
+      });
+      $('#ave-level-rate-<%= race.id %>').empty();
+      $('#ave-level-rate-<%= race.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: <%= ave_level %>,
+      });
+      $('#ave-course-rate-<%= race.id %>').empty();
+      $('#ave-course-rate-<%= race.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: <%= ave_course %>,
+      });
+      $('#ave-water-rate-<%= race.id %>').empty();
+      $('#ave-water-rate-<%= race.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: <%= ave_water %>,
+      });
+      $('#ave-sightseeing-rate-<%= race.id %>').empty();
+      $('#ave-sightseeing-rate-<%= race.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: <%= ave_sightseeing %>,
+      });
+  })
+ </script>

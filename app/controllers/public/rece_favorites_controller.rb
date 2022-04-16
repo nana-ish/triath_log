@@ -1,0 +1,2 @@
+class ReceFavoritesController < ApplicationController
+end

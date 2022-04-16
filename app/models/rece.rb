@@ -1,2 +1,0 @@
-class Rece < ApplicationRecord
-end

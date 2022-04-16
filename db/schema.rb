@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_022638) do
+ActiveRecord::Schema.define(version: 2022_04_10_063250) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,18 +40,6 @@ ActiveRecord::Schema.define(version: 2022_04_09_022638) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -72,6 +60,12 @@ ActiveRecord::Schema.define(version: 2022_04_09_022638) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "districts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "end_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,20 +73,21 @@ ActiveRecord::Schema.define(version: 2022_04_09_022638) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
-  create_table "rece_favorites", force: :cascade do |t|
+  create_table "race_favorites", force: :cascade do |t|
     t.integer "district_id"
     t.integer "end_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reces", force: :cascade do |t|
+  create_table "races", force: :cascade do |t|
     t.integer "district_id"
     t.string "name"
     t.date "date"
@@ -102,6 +97,7 @@ ActiveRecord::Schema.define(version: 2022_04_09_022638) do
     t.string "categorie"
     t.string "venue"
     t.text "introduction"
+    t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -115,14 +111,15 @@ ActiveRecord::Schema.define(version: 2022_04_09_022638) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "end_user_id"
-    t.integer "rece_id"
+    t.integer "race_id"
     t.float "score"
-    t.integer "revel"
-    t.integer "course"
-    t.integer "water"
-    t.integer "sightseeing"
+    t.float "level"
+    t.float "course"
+    t.float "water"
+    t.float "sightseeing"
+    t.string "title"
     t.text "comment"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
