@@ -2,8 +2,10 @@
   <div class="row mt-5">
     <div class="col-md-3 mt-1"><%= render "public/homes/end_user_info",end_user: @end_user %> </div>
     <div class="col-md-9">
-      <p class="text-center marker-border-blue h3">お気に入りのレース<span class="h4">(件)</span></p>
-      <%#= render "public/reviews/race_index",races: @race_favorites %>
+      <p class="text-center marker-border-blue h3">お気に入りのレース<span class="h4">(<%= @race_favorites.count %>件)</span></p>
+      <% @race_favorites.each do |race_favorite| %>
+        <%= render "public/reviews/race_index", race: race_favorite.race %>
+      <% end %>
     </div>
   </div>
 </div>

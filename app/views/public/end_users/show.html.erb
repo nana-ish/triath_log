@@ -8,7 +8,7 @@
           <p class="text-center h4 mt-2">
           <%= link_to review.race.name,review_path(review.race) %>
             <!--お気に入り-->
-          <% if current_end_user.favorited?(review.id) %>
+          <% if current_end_user.review_favorited?(review.id) %>
             <%= link_to review_review_favorite_path(review.id, 1), method: :delete ,class: "btn btn-sm btn-outline-secondary ml-2" do %>
               <span>❤ <span><%= review.review_favorites.count %>
             <% end %>

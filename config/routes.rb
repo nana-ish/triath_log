@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  #ゲストログイン用に追加
+  devise_scope :end_user do
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
 # 管理者用各機能ルーティング
   namespace :admin do
@@ -24,18 +28,21 @@ Rails.application.routes.draw do
   scope module: :public do    #(urlにpubicを含めたくないため"scope module: :〇〇 do"を使う)
     root to: "homes#top"
     get 'about'=>"homes#about"
-    
+
     resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]do
        resources :review_favorites,only:[:create,:destroy]
-    end   
+       resources :review_comments,only:[:create,:destroy]
+    end
+
     resources :races,only:[:show,:index] do
       resources :race_favorites, only:[ :create, :destroy]
-      resources :comments,only:[:index,:show,:edit,:update]
     end
+
     resources :end_users,only:[:index,:show,:edit,:update,:destroy] do
       resources :race_favorites,only:[:index,:show]
       resources :review_favorites,only:[:index,:show]
     end
+
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -7,8 +7,7 @@ class EndUser < ApplicationRecord
   # ER図参照
   has_many :reviews, dependent: :destroy
   has_many:race_favorites,dependent: :destroy
-  #has_many:races,dependent: :destroy
-  #has_many:comments, dependent: :destroy
+  has_many:comments, dependent: :destroy
   has_many:review_favorites, dependent: :destroy
 
   has_one_attached :end_user_image
@@ -27,6 +26,13 @@ class EndUser < ApplicationRecord
 
   def review_favorited?(review)
     review_favorites.where(review_id: review).exists?
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |end_user|
+    end_user.password = SecureRandom.urlsafe_base64
+    end_user.name="ゲスト"
+    end
   end
 
 end

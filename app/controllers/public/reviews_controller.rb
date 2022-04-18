@@ -26,6 +26,7 @@ class Public::ReviewsController < ApplicationController
     @ave_course = @race.reviews.average(:course)
     @ave_water = @race.reviews.average(:water)
     @ave_sightseeing = @race.reviews.average(:sightseeing)
+    # @review_comments = ReviewComment.all
   end
 
   def edit

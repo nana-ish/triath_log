@@ -4,7 +4,9 @@
       <%= render "districts",districts: @districts %>
     </div>
     <div class="col-md-9">
-      <%= render "public/reviews/race_index",races: @races  %>
+      <% @races.each do |race| %>
+        <%= render "public/reviews/race_index", race: race  %>
+      <% end %>
       <div class="text-center mt-5"> <%=link_to "レビューを書く",new_review_path, class: "btn btn-primary" %></div>
     </div>
   </div>

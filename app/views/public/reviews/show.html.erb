@@ -4,6 +4,7 @@
       <p class="text-center bg-light"><span class="h4"><%= @race.name %></span>(<%= @reviews.count %>件のレビュー)</p>
     </div>
   </div>
+  <!--レビューのまとめ始め-->
   <div class="row">
     <div class="col-md-6 ">
       <p class="text-left">開催地：<%= @race.venue %></p>
@@ -17,6 +18,7 @@
       ave_course: @ave_course, ave_water: @ave_water, ave_sightseeing: @ave_sightseeing %>
     </div>
   </div>
+  <!--レビューのまとめ終わり-->
   <div class ="row">
     <% @reviews.each do |review| %>
       <div class="col-md-3 border mt-3">
@@ -41,17 +43,40 @@
         </p>
         <div class ="row">
           <div class="col-md-7">
-           <%= render "personal_star" ,review: review %>
+           <%= render "personal_star",review: review %>
           </div>
           <div class="col-md-5">
            <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
           </div>
-          <div class ="row">
-            <div class="col-md-12">
-             <p class="text-left mx-3"><%= review.comment %></p>
-            </div>
+        </div>
+        <div class ="row">
+          <div class="col-md-12">
+            <p class="text-left mx-3"><%= review.comment %></p>
           </div>
         </div>
+        <hr>
+        <div> <!--コメント一覧-->
+        <% if review.review_comments.count == 0 %>
+          <p>No Comment</p>
+        <% else %>
+          <% review.review_comments.each do |review_comment| %>
+            <p><%= review_comment.end_user.name %></p>
+            <p class="text-left mx-3"><%= review_comment.text %></p>
+          <% end %>
+        <% end %>
+        </div> <!--コメント一覧終わり-->
+        <div class ="row"> <!--コメント入力-->
+          <div class="col-md-10 mb-4">
+            <%= form_with model: ReviewComment,url:review_review_comments_path(review),local: true do|f| %>
+              <%= f.text_field :text, autocomplete: "text", class: "form-control",placeholder: 'コメント' %>
+              <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+              <%= f.hidden_field :review_id, value:review.id %>
+          </div>
+          <div class="col-md-2 mb-4">
+              <%= f.submit '投稿する', class: "btn btn-sm btn-info" %>
+            <% end %>
+          </div>
+        </div><!--コメント終わり-->
       </div>
     <% end %>
   </div>
