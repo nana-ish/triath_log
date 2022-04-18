@@ -7,16 +7,19 @@ class Public::ReviewsController < ApplicationController
 
 
   def index
+    @end_user =current_end_user
     @districts = District.all
-    @races = Race.all
     if params[:district_id]
        @district = District.find(params[:district_id])
-       @races = @district.races.order(created_at: :desc).all
+       @races = @district.races
+    else
+     #@races = Race.find(Review.group(:race_id).order("AVG(score) desc").pluck(:race_id))
+     @races = Race.left_joins(:reviews).group(:id).order("AVG(reviews.score) desc")
     end
   end
 
   def show
-    @race = Race.find_by(params[:race_id])
+    @race = Race.find(params[:id])
     @reviews = @race.reviews
     @ave_score = @race.reviews.average(:score)
     @ave_level = @race.reviews.average(:level)
@@ -32,7 +35,7 @@ class Public::ReviewsController < ApplicationController
     review = Review.new(review_params)
     review.save
     if review.save
-      redirect_to review_path(review), notice: "レビューが投稿されました。"
+      redirect_to review_path(review.race), notice: "レビューが投稿されました。"
     else
       render :new,notice: "再度投稿をお願いします。"
     end

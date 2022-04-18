@@ -5,10 +5,11 @@ class EndUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # ER図参照
-  has_many:reviews, dependent: :destroy
-  # has_many:comments, dependent: :destroy
-  # has_many:review_favorites, dependent: :destroy
-  # has_many:rece_favorites,dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many:race_favorites,dependent: :destroy
+  #has_many:races,dependent: :destroy
+  #has_many:comments, dependent: :destroy
+  has_many:review_favorites, dependent: :destroy
 
   has_one_attached :end_user_image
 
@@ -18,6 +19,14 @@ class EndUser < ApplicationRecord
       end_user_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type:'image/jpeg')
     end
       end_user_image.variant(resize_to_fit:[width, height]).processed
+  end
+
+  def race_favorited?(race)
+    race_favorites.where(race_id: race).exists?
+  end
+
+  def review_favorited?(review)
+    review_favorites.where(review_id: review).exists?
   end
 
 end

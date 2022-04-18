@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'reviews/index'
-    get 'reviews/show'
-    get 'reviews/update'
-    get 'reviews/edit'
-  end
 # 管理者用ログイン機能
 # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -30,12 +24,17 @@ Rails.application.routes.draw do
   scope module: :public do    #(urlにpubicを含めたくないため"scope module: :〇〇 do"を使う)
     root to: "homes#top"
     get 'about'=>"homes#about"
-    resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]
-    resources :races,only:[:show,:index]
-    resources :end_users,only:[:index,:show,:edit,:update,:destroy] do
+    
+    resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]do
+       resources :review_favorites,only:[:create,:destroy]
+    end   
+    resources :races,only:[:show,:index] do
+      resources :race_favorites, only:[ :create, :destroy]
       resources :comments,only:[:index,:show,:edit,:update]
-      resources :race_favorites,only:[:index,:show,:edit,:update]
-      resources :review_favorites,only:[:index,:show,:edit,:update]
+    end
+    resources :end_users,only:[:index,:show,:edit,:update,:destroy] do
+      resources :race_favorites,only:[:index,:show]
+      resources :review_favorites,only:[:index,:show]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

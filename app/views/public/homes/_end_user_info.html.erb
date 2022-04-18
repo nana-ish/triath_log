@@ -1,7 +1,21 @@
   <!--ログイン者情報-->
   <p class="h4 text-center marker-border-blue">ユーザー情報</p>
   <%= image_tag end_user.get_end_user_image(150,150), class: "mx-auto d-block"%><br>
-  <div class="mb-3">name  :<%=link_to end_user.name,end_user_path(end_user) %></div>
+  <div class="mb-3">name  :<%= end_user.name %></div>
   <div class="mb-3">email :<%= end_user.email %></div>
-  <div class="mb-3">レビュー件数：<%= end_user.reviews.count %></div>
+  <div class="mb-3">
+    <%=link_to end_user_path(end_user) do%>
+     <p>レビュー件数：<%= end_user.reviews.count %>件</p>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= link_to end_user_race_favorites_path(end_user) do %>
+      <p>お気に入りしたレース：<%=  end_user.race_favorites.count %>件</p>
+    <% end %>
+  </div>
+  <div class="mb-3">
+    <%= link_to end_user_review_favorites_path(end_user) do %>
+      <p>お気に入りしたレビュー：<%=  end_user.review_favorites.count %>件</p>
+    <% end %>
+  </div>
   <div class="mb-3"><%= link_to "編集する",edit_end_user_path(end_user) ,class: "btn btn-primary btn-sm btn-block "%></div>

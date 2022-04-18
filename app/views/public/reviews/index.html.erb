@@ -1,54 +1,10 @@
 <div class="container">
   <div class="row mt-5">
     <div class ="col-md-3">
-       <table class="table mt-4">
-        <thead>
-          <tr>
-            <th class="text-center">地域で探す</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @districts.each do |district| %>
-          <tr>
-            <td class="text-center"><%= link_to "#{district.name}",reviews_path(district_id: district.id) %></td>
-          </tr>
-          <% end %>
-        <tbody>
-      </table>
+      <%= render "districts",districts: @districts %>
     </div>
     <div class="col-md-9">
-      <% @races.each do |race| %>
-      <div class= "border rounded mt-3">
-        <div class= "row">
-          <div class="col-md-12 m-2">
-          <p class="h3 text-center"><%= link_to race.name,review_path(race) %></p>
-          <p class="text-center">レビュー：<%=race.reviews.count %>件</p>
-          <p class="text-left">総合評価：<span id="ave-score-rate-<%= race.id %>"></span></p>
-          <script>
-          document.addEventListener("turbolinks:load", function(){
-                $('#ave-score-rate-<%= race.id %>').empty();
-                $('#ave-score-rate-<%= race.id %>').raty({
-                    size: 36,
-                    starOff: "<%= asset_path('star-off.png') %>",
-                    starOn: "<%= asset_path('star-on.png') %>",
-                    starHalf: "<%= asset_path('star-half.png') %>",
-                    half: true,
-                    readOnly: true,
-                    score: <%= race.reviews.average(:score) %>,
-                });
-          })
-           </script>
-          </div>
-        </div>
-        <div class= "row">
-          <div class="col-md-4">
-             <%= image_tag race.get_race_image(150,150),class: "mx-auto d-block"%>
-          </div>
-          <div class="col-md-4 m-2">
-          </div>
-        </div>
-      </div>
-      <% end %>
+      <%= render "public/reviews/race_index",races: @races  %>
       <div class="text-center mt-5"> <%=link_to "レビューを書く",new_review_path, class: "btn btn-primary" %></div>
     </div>
   </div>

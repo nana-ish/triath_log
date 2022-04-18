@@ -5,8 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
 District.create!(name:"北海道地方")
 District.create!(name:"東北地方")
 District.create!(name:"関東地方")
@@ -46,6 +44,6 @@ Admin.create!(
 EndUser.create!(
     email: 'triath@log.com',
     password: '123456',
-    name:"トライアスロン　太郎"
+    name: "トライアスロン太郎",
 )
 

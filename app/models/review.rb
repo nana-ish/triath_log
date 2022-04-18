@@ -16,4 +16,8 @@ class Review < ApplicationRecord
       review_image.variant(resize_to_fit:[width, height]).processed
   end
 
+  def favorited?(end_user)
+    review_favorites.where(end_user_id: user.id).exists?
+  end
+
 end

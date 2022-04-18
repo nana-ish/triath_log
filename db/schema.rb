@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_063250) do
   end
 
   create_table "race_favorites", force: :cascade do |t|
-    t.integer "district_id"
+    t.integer "race_id"
     t.integer "end_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

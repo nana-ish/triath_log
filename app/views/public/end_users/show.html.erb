@@ -2,9 +2,39 @@
   <div class="row mt-5">
     <div class="col-md-3 mt-1"><%= render "public/homes/end_user_info",end_user: @end_user %> </div>
     <div class="col-md-9">
-      <p class="text-center marker-border-blue h3">レビュー一覧</h>
-       <% @reviews.each do |review| %>
-       <% end %>
+      <p class="text-center marker-border-blue h3">レビュー一覧<span class="h4">(<%= @reviews.count %>件)</span></p>
+      <% @reviews.each do |review| %>
+        <div class="col-md-12 border mt-3 ">
+          <p class="text-center h4 mt-2">
+          <%= link_to review.race.name,review_path(review.race) %>
+            <!--お気に入り-->
+          <% if current_end_user.favorited?(review.id) %>
+            <%= link_to review_review_favorite_path(review.id, 1), method: :delete ,class: "btn btn-sm btn-outline-secondary ml-2" do %>
+              <span>❤ <span><%= review.review_favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to review_review_favorites_path(review.id), method: :post,class: "btn btn-sm btn-outline-secondary ml-2" do %>
+              <span>♡ <span><%= review.review_favorites.count %>
+            <% end %>
+          <% end %>
+          <!--お気に入り 終わり-->
+          </p>
+          <p class="text-left h5 mt-2"><%= review.title %> <span class="h6">投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></span></p>
+          <div class ="row">
+            <div class="col-md-7">
+             <%= render "public/reviews/personal_star" ,review: review %>
+            </div>
+            <div class="col-md-5">
+               <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
+            </div>
+            <div class ="row">
+              <div class="col-md-12">
+               <p class="text-left mx-3"><%= review.comment %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,9 +1,11 @@
 class Race < ApplicationRecord
 
   #ER図参照
-  has_many:race_favorites, dependent: :destroy
-  has_many:reviews, dependent: :destroy
+  has_many :race_favorites, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   belongs_to :district
+  #belongs_to :end_user
+
 
   has_one_attached :race_image
 
@@ -27,5 +29,9 @@ class Race < ApplicationRecord
       return "2"
     end
   end
+
+#   def favorited?(end_user)
+#     race_favorites.where(end_user_id: end_user.id).exists?
+#   end
 
 end

@@ -1,0 +1,62 @@
+  <!--個人評価-->
+
+ <p class="text-left">総合評価：<span id="score-rate-<%= review.id %>"></span></p>
+ <p class="text-left">大会レベル：<span id="level-rate-<%= review.id %>"></span></p>
+ <p class="text-left">コースの起伏：<span id="course-rate-<%= review.id %>"></span></p>
+ <p class="text-left">水質：<span id="water-rate-<%= review.id %>"></span></p>
+ <p class="text-left">観光：<span id="sightseeing-rate-<%= review.id %>"></span></p>
+ 
+  <script>
+     document.addEventListener("turbolinks:load", function(){
+      $('#score-rate-<%= review.id %>').empty();
+      $('#score-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.score %>,
+       });
+      $('#level-rate-<%= review.id %>').empty();
+      $('#level-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.level%>,
+       });
+      $('#course-rate-<%= review.id %>').empty();
+      $('#course-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.course %>,
+       });
+       $('#water-rate-<%= review.id %>').empty();
+       $('#water-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.water %>,
+       });
+       $('#sightseeing-rate-<%= review.id %>').empty();
+       $('#sightseeing-rate-<%= review.id %>').raty({
+           size: 36,
+           starOff: "<%= asset_path('star-off.png') %>",
+           starOn: "<%= asset_path('star-on.png') %>",
+           starHalf: "<%= asset_path('star-half.png') %>",
+           half: true,
+           readOnly: true,
+           score: <%= review.sightseeing %>,
+       });
+     })
+   </script>

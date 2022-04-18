@@ -1,0 +1,40 @@
+ <% races.each do |race| %>
+    <div class= "border mt-3">
+      <div class="row">
+        <div class="col-md-3">
+         <%= image_tag race.get_race_image(150,150),class: "mx-auto d-block" %>
+        </div>
+        <div class="col-md-9">
+         <p class="h4 text-center mr-5 mt-2">
+          <%= link_to race.name,review_path(race) %>
+          <!--お気に入り-->
+          <% if current_end_user.race_favorited?(race) %>
+            <%= link_to "お気に入りから削除する",race_race_favorite_path(race.id, 1), method: :delete ,class: "btn btn-sm btn-outline-info"%>
+          <% else %>
+            <%= link_to "お気に入りに登録する",race_race_favorites_path(race.id), method: :post,class: "btn btn-sm btn-info" %>
+          <% end %>
+          <!--お気に入り 終わり-->
+         </p>
+         <p class="text-center mr-5">レビュー：<%=race.reviews.count %>　お気に入り件数：<%= race.race_favorites.count %></p>
+         <% if (race.reviews.count) >= 1 %>
+          <p class="text-center mr-5">総合評価：<span id="ave-score-rate-<%= race.id %>"></span></p>
+            <script>
+             document.addEventListener("turbolinks:load", function(){
+               $('#ave-score-rate-<%= race.id %>').empty();
+               $('#ave-score-rate-<%= race.id %>').raty({
+                   size: 36,
+                   starOff: "<%= asset_path('star-off.png') %>",
+                   starOn: "<%= asset_path('star-on.png') %>",
+                   starHalf: "<%= asset_path('star-half.png') %>",
+                   half: true,
+                   readOnly: true,
+                   score: <%= race.reviews.average(:score) %>,
+               });
+             })
+            </script>
+          <% end %>
+          <p class="text-center mr-5"><%=race.introduction %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>

@@ -1,0 +1,14 @@
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th class="text-center">地域で探す</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% districts.each do |district| %>
+    <tr>
+      <td class="text-center"><%= link_to "#{district.name}",reviews_path(district_id: district.id) %></td>
+    </tr>
+    <% end %>
+  <tbody>
+</table>
