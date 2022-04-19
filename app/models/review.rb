@@ -20,4 +20,15 @@ class Review < ApplicationRecord
     review_favorites.where(end_user_id: user.id).exists?
   end
 
+   # 検索機能
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @review = Review.where("name LIKE?", "#{word}")
+    elsif search == "partial_match"
+      @review = Review.where("name LIKE?","%#{word}%")
+    else
+      @review = Review.all
+    end
+  end
+
 end

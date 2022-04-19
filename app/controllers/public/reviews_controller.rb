@@ -20,7 +20,7 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @race = Race.find(params[:id])
-    @reviews = @race.reviews
+    @reviews = @race.reviews.page(params[:page]).per(1)
     @ave_score = @race.reviews.average(:score)
     @ave_level = @race.reviews.average(:level)
     @ave_course = @race.reviews.average(:course)

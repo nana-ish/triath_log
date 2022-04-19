@@ -30,8 +30,15 @@ class Race < ApplicationRecord
     end
   end
 
-#   def favorited?(end_user)
-#     race_favorites.where(end_user_id: end_user.id).exists?
-#   end
+ # 検索機能
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @race = Race.where("name LIKE?", "#{word}")
+    elsif search == "partial_match"
+      @race = Race.where("name LIKE?","%#{word}%")
+    else
+      @race = Race.all
+    end
+  end
 
 end

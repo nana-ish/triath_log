@@ -34,5 +34,16 @@ class EndUser < ApplicationRecord
     end_user.name="ゲスト"
     end
   end
+  # 検索機能
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @end_user = EndUser.where("name LIKE?", "#{word}")
+    elsif search == "partial_match"
+      @end_user = EndUser.where("name LIKE?","%#{word}%")
+    else
+      @end_user = EndUser.all
+    end
+  end
+
 
 end

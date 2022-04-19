@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  #ゲストログイン用に追加
+#ゲストログイン用に追加
   devise_scope :end_user do
     post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   scope module: :public do    #(urlにpubicを含めたくないため"scope module: :〇〇 do"を使う)
     root to: "homes#top"
     get 'about'=>"homes#about"
-
+    get "search" => "searches#index"
     resources :reviews,only:[:new,:index,:show,:create,:destroy,:edit,:update]do
        resources :review_favorites,only:[:create,:destroy]
        resources :review_comments,only:[:create,:destroy]

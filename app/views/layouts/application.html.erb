@@ -39,7 +39,7 @@
             <ul class="navbar-nav ml-auto">
               <% if end_user_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "　Home", root_path, class: 'nav-link text-dark' %>
+                  <%= link_to "　Mypage", root_path, class: 'nav-link text-dark' %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "　About", about_path, class: 'nav-link text-dark' %>
@@ -86,8 +86,8 @@
       </nav>
     </header>
     <main class="mb-auto">
-    <p class="mt-2 ml-2"><%= notice %></p>
-    <%= yield %>
+      <p class="mt-2 ml-2"><%= notice %></p>
+      <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-3 pb-3 fixed-bottom">
       <div class="container">

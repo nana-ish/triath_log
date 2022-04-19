@@ -1,10 +1,7 @@
 class Public::RaceFavoritesController < ApplicationController
 
   def index
-    # binding.irb
     @end_user = EndUser.find(params[:end_user_id])
-    # @race_favorites = RaceFavorite.where(end_user: @end_user).pluck(:race_id)
-    # @races = Race.find(@race_favorites)
     @race_favorites = @end_user.race_favorites
   end
 

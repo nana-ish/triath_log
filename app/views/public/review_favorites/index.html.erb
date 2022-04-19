@@ -1,2 +1,11 @@
-<h1>Public::ReviewFavorites#index</h1>
-<p>Find me in app/views/public/review_favorites/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-3 mt-1"><%= render "public/homes/end_user_info",end_user: @end_user %> </div>
+    <div class="col-md-9">
+      <p class="text-center marker-border-blue h3">お気に入りしたレビュー<span class="h4">(<%= @review_favorites.count %>件)</span></p>
+      <% @review_favorites.each do |review_favorite| %>
+        <%= render "public/end_users/review_index", review: review_favorite.review %>
+      <% end %>
+    </div>
+  </div>
+</div>

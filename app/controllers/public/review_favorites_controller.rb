@@ -13,6 +13,9 @@ class Public::ReviewFavoritesController < ApplicationController
   end
 
   def index
+    @end_user = EndUser.find(params[:end_user_id])
+    @review_favorites =@end_user.review_favorites
 
   end
+
 end

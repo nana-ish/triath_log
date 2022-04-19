@@ -15,7 +15,7 @@
           <% end %>
           <!--お気に入り 終わり-->
          </p>
-         <p class="text-center mr-5">レビュー：<%=race.reviews.count %>　お気に入り件数：<%= race.race_favorites.count %></p>
+         <p class="text-center mr-5">レビュー件数：<%=race.reviews.count %>　お気に入り件数：<%= race.race_favorites.count %></p>
          <% if (race.reviews.count) >= 1 %>
           <p class="text-center mr-5">総合評価：<span id="ave-score-rate-<%= race.id %>"></span></p>
             <script>

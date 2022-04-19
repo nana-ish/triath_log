@@ -1,62 +1,86 @@
   <!--個人評価-->
-
- <p class="text-left">総合評価：<span id="score-rate-<%= review.id %>"></span></p>
- <p class="text-left">大会レベル：<span id="level-rate-<%= review.id %>"></span></p>
- <p class="text-left">コースの起伏：<span id="course-rate-<%= review.id %>"></span></p>
- <p class="text-left">水質：<span id="water-rate-<%= review.id %>"></span></p>
- <p class="text-left">観光：<span id="sightseeing-rate-<%= review.id %>"></span></p>
- 
-  <script>
-     document.addEventListener("turbolinks:load", function(){
-      $('#score-rate-<%= review.id %>').empty();
-      $('#score-rate-<%= review.id %>').raty({
-           size: 36,
-           starOff: "<%= asset_path('star-off.png') %>",
-           starOn: "<%= asset_path('star-on.png') %>",
-           starHalf: "<%= asset_path('star-half.png') %>",
-           half: true,
-           readOnly: true,
-           score: <%= review.score %>,
-       });
-      $('#level-rate-<%= review.id %>').empty();
-      $('#level-rate-<%= review.id %>').raty({
-           size: 36,
-           starOff: "<%= asset_path('star-off.png') %>",
-           starOn: "<%= asset_path('star-on.png') %>",
-           starHalf: "<%= asset_path('star-half.png') %>",
-           half: true,
-           readOnly: true,
-           score: <%= review.level%>,
-       });
-      $('#course-rate-<%= review.id %>').empty();
-      $('#course-rate-<%= review.id %>').raty({
-           size: 36,
-           starOff: "<%= asset_path('star-off.png') %>",
-           starOn: "<%= asset_path('star-on.png') %>",
-           starHalf: "<%= asset_path('star-half.png') %>",
-           half: true,
-           readOnly: true,
-           score: <%= review.course %>,
-       });
-       $('#water-rate-<%= review.id %>').empty();
-       $('#water-rate-<%= review.id %>').raty({
-           size: 36,
-           starOff: "<%= asset_path('star-off.png') %>",
-           starOn: "<%= asset_path('star-on.png') %>",
-           starHalf: "<%= asset_path('star-half.png') %>",
-           half: true,
-           readOnly: true,
-           score: <%= review.water %>,
-       });
-       $('#sightseeing-rate-<%= review.id %>').empty();
-       $('#sightseeing-rate-<%= review.id %>').raty({
-           size: 36,
-           starOff: "<%= asset_path('star-off.png') %>",
-           starOn: "<%= asset_path('star-on.png') %>",
-           starHalf: "<%= asset_path('star-half.png') %>",
-           half: true,
-           readOnly: true,
-           score: <%= review.sightseeing %>,
-       });
-     })
-   </script>
+  <div class ="text-center">
+  <p class>総合評価：<span id="score-rate-<%= review.id %>"></span> (<%=review.score.round(2)%>点)</p>
+  <table class="table table-borderless">
+  <tbody>
+    <tr>
+      <th scope="row">レベル</th>
+       <td>初心者向け</td>
+       <td><span id="level-rate-<%= review.id %>"></span></td>
+       <td>上級者向け</td>
+    </tr>
+    <tr>
+      <th scope="row">コース</th>
+      <td>平坦</td>
+      <td><span id="course-rate-<%= review.id %>"></span></td>
+      <td>起伏あり</td>
+    </tr>
+    <tr>
+      <th scope="row">水質</th>
+      <td>濁りなし</td>
+      <td><span id="water-rate-<%= review.id %>"></span></td>
+      <td>濁りあり</td>
+    </tr>
+    <tr>
+      <th scope="row">観光</th>
+      <td>少ない</td>
+      <td><span id="sightseeing-rate-<%= review.id %>"></span></td>
+      <td>多い</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+<script>
+  document.addEventListener("turbolinks:load", function(){
+   $('#score-rate-<%= review.id %>').empty();
+   $('#score-rate-<%= review.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('star-off.png') %>",
+        starOn: "<%= asset_path('star-on.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= review.score %>,
+    });
+   $('#level-rate-<%= review.id %>').empty();
+   $('#level-rate-<%= review.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('review-off.png') %>",
+        starOn: "<%= asset_path('review-on.png') %>",
+        starHalf: "<%= asset_path('review-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= review.level%>,
+    });
+   $('#course-rate-<%= review.id %>').empty();
+   $('#course-rate-<%= review.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('review-off.png') %>",
+        starOn: "<%= asset_path('review-on.png') %>",
+        starHalf: "<%= asset_path('review-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= review.course %>,
+    });
+    $('#water-rate-<%= review.id %>').empty();
+    $('#water-rate-<%= review.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('review-off.png') %>",
+        starOn: "<%= asset_path('review-on.png') %>",
+        starHalf: "<%= asset_path('review-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= review.water %>,
+    });
+    $('#sightseeing-rate-<%= review.id %>').empty();
+    $('#sightseeing-rate-<%= review.id %>').raty({
+        size: 36,
+        starOff: "<%= asset_path('review-off.png') %>",
+        starOn: "<%= asset_path('review-on.png') %>",
+        starHalf: "<%= asset_path('review-half.png') %>",
+        half: true,
+        readOnly: true,
+        score: <%= review.sightseeing %>,
+    });
+  })
+</script>

@@ -1,8 +1,6 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 mt-5">
+  <div class="row mt-3">
       <p class ="h3 text-left">レビュー投稿フォーム</p>
-     </div>
   </div>
   <div class="row">
     <%= form_with model: @review ,url:reviews_path,local: true do|f| %>
@@ -40,52 +38,53 @@
   </div>
 </div>
 <script>
-// 画面が出来上がったときをトリガーとして
-document.addEventListener("turbolinks:load", function(){
-$('#score').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[score]',
-  half: true,
-});
-
-$('#level').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[level]',
-  half: true,
-});
-
-$('#course').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[course]',
-  half: true,
+  // 画面が出来上がったときをトリガーとして
+  document.addEventListener("turbolinks:load", function(){
+  $('#score<%= @review.id %>').empty();
+  $('#score').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[score]',
+    half: true,
   });
-
-$('#water').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[water]',
-  half: true,
+  $('#level<%= @review.id %>').empty();
+  $('#level').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('review-off.png') %>',
+    starOn : '<%= asset_path('review-on.png') %>',
+    starHalf: '<%= asset_path('review-half.png') %>',
+    scoreName: 'review[level]',
+    half: true,
   });
-
-$('#sightseeing').raty({
-  size     : 36,
-  starOff:  '<%= asset_path('star-off.png') %>',
-  starOn : '<%= asset_path('star-on.png') %>',
-  starHalf: '<%= asset_path('star-half.png') %>',
-  scoreName: 'review[sightseeing]',
-  half: true,
-  });
-})
+  $('#course<%= @review.id %>').empty();
+  $('#course').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('review-off.png') %>',
+    starOn : '<%= asset_path('review-on.png') %>',
+    starHalf: '<%= asset_path('review-half.png') %>',
+    scoreName: 'review[course]',
+    half: true,
+    });
+  $('#water<%= @review.id %>').empty();
+  $('#water').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('review-off.png') %>',
+    starOn : '<%= asset_path('review-on.png') %>',
+    starHalf: '<%= asset_path('review-half.png') %>',
+    scoreName: 'review[water]',
+    half: true,
+    });
+  $('#sightseeing<%= @review.id %>').empty();
+  $('#sightseeing').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('review-off.png') %>',
+    starOn : '<%= asset_path('review-on.png') %>',
+    starHalf: '<%= asset_path('review-half.png') %>',
+    scoreName: 'review[sightseeing]',
+    half: true,
+    });
+  })
 </script>
 <% end %>
