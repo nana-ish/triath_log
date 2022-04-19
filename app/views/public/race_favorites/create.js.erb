@@ -1,0 +1,3 @@
+$('#favorite_buttons_<%= @race_favorite.race_id %>').html("<%= j(render "public/race_favorites/race_favorite", race: @race_favorite.race) %>");
+$('#favorite_count_<%= @race_favorite.race_id %>').html("<%=@race_favorite.race.race_favorites.count%>");
+

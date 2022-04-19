@@ -28,18 +28,10 @@
       </div>
       <div class="col-md-9 border mt-3 ">
         <p class="text-left h4 mt-2 ml-3">
-          <%= review.title %>
-          <!--お気に入り-->
-          <% if current_end_user.review_favorited?(review.id) %>
-            <%= link_to review_review_favorite_path(review.id, 1), method: :delete ,class: "btn btn-sm btn-outline-secondary ml-2" do %>
-              <span>❤  ︎<%= review.review_favorites.count %>　いいね<span>
-            <% end %>
-          <% else %>
-            <%= link_to review_review_favorites_path(review.id), method: :post,class: "btn btn-sm btn-outline-secondary ml-2" do %>
-              <span>♡ <%= review.review_favorites.count %>　いいね<span>
-            <% end %>
-          <% end %>
-          <!--お気に入り 終わり-->
+            <%= review.title %>
+          <span id="favorite_buttons_<%= review.id %>">
+            <%= render "public/review_favorites/review_favorite",review: review %>
+          </span>
           <span class="ml-2 h6">コメント：<%= review.review_comments.count %>件</span>
         </p>
         <div class ="row">
