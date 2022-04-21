@@ -6,7 +6,7 @@
     <!--検索対象モデルがraceの時 -->
       <% if @range == "大会名" %>
         <% if @races.count == 0 %>
-      　   <p>該当する大会はありません。</p>
+      　   <p class="text-center">該当する大会はありません。</p>
         <% end %>
         <tbody>
           <% @races.each do |race| %>
@@ -18,7 +18,7 @@
       <!--検索対象モデルがend_userの時 -->
       <% else @end_users == "User名" %>
         <% if @end_users.count == 0 %>
-          <p>該当するユーザーはありません。</p>
+          <p class="text-center">該当するユーザーはありません。</p>
         <% end %>
         <tbody>
           <% @end_users.each do |end_user| %>
