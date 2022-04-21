@@ -56,7 +56,7 @@
         <%= f.label :review_image, "写真：" %>
         <%= f.file_field :review_image, accept: "image/*" %>
         <%= f.hidden_field :end_user_id, value: current_end_user.id %>
-        <%= f.submit '投稿する', class: "my-2 mx-auto d-block btn btn-primary" %>
+        <%= f.submit '編集する', class: "my-2 mx-auto d-block btn btn-primary" %>
       <% end %>
       <script>
         // 画面が出来上がったときをトリガーとして
