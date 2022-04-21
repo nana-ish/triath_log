@@ -1,23 +1,26 @@
   <!--ログイン者情報-->
   <p class="h4 text-center marker-border-blue">ユーザー情報</p>
   <%= image_tag end_user.get_end_user_image(150,150), class: "mx-auto d-block"%><br>
-  <div class="mb-3">name  :<%= end_user.name %></div>
-  <% if end_user == current_end_user %>
-    <div class="mb-3">email :<%= end_user.email %></div>
+  <div class="mb-3 text-center"><%= end_user.name %> </div>
+  <% unless (end_user != current_end_user) %>
+    <div class="mb-3 text-center"> Email :<%= end_user.email %></div>
   <% end %>
-  <div class="mb-3">
+  <div class="mb-3 text-center">
     <%=link_to end_user_path(end_user) do%>
-     <p>レビュー件数：<%= end_user.reviews.count %>件</p>
+     <p>レビュー投稿件数：<%= end_user.reviews.count %>件</p>
     <% end %>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 text-center">
     <%= link_to end_user_race_favorites_path(end_user) do %>
       <p>お気に入りしたレース：<%=  end_user.race_favorites.count %>件</p>
     <% end %>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 text-center">
     <%= link_to end_user_review_favorites_path(end_user) do %>
       <p>お気に入りしたレビュー：<%=  end_user.review_favorites.count %>件</p>
     <% end %>
   </div>
-  <div class="mb-3"><%= link_to "編集する",edit_end_user_path(end_user) ,class: "btn btn-primary btn-sm btn-block "%></div>
+  <% if end_user == current_end_user %>
+  <div class="mb-3"><%= link_to "ユーザー情報を編集する",edit_end_user_path(end_user) ,class: "btn btn-primary btn-sm btn-block "%></div>
+  <div class="mb-3"><%= link_to "レビューを書く",new_review_path ,class: "btn btn-info btn-sm btn-block "%></div>
+  <% end %>

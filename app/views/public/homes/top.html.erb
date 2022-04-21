@@ -1,14 +1,15 @@
 <div class="container">
-  <div class="row mt-5">
+  <% unless end_user_signed_in? %>
+    <%= link_to 'ゲストログインはこちら（閲覧用）', public_guest_sign_in_path, method: :post ,class: "mt-4 btn btn-info"%>
+  <% end %>
+  <div class="main-container"></div>
+  <div class="row mt-2">
     <% if end_user_signed_in? %>
-    <div class="col-md-3 mt-1"><%= render "end_user_info",end_user: @end_user %></div>
-    <div class="col-md-9">
+      <div class="col-md-3 mt-1"><%= render "end_user_info",end_user: @end_user %></div>
+      <div class="col-md-9">
     <%elsif%>
-    <div class="col-md-12">
+      <div class="col-md-12">
     <%end%>
-    <% unless end_user_signed_in? %>
-      <%= link_to 'ゲストログイン（閲覧用）', public_guest_sign_in_path, method: :post %>
-    <% end %>
       <p class="text-center marker-border-blue h3">今年度の開催レース</h>
       <table class="table mt-4">
         <thead>
@@ -34,10 +35,7 @@
             <% if race.get_race_situation(race) == "2" %>
               <td class="text-center">大会終了</td>
             <% end %>
-            <td class="text-center"><%=link_to "過去のレビューを見る",review_path(race),class: "btn btn-outline-primary" %></td>
-            <% if race.get_race_situation(race) == "2" %>
-              <td class="text-center"><%=link_to "レビューを書く",new_review_path %></td>
-            <% end %>
+            <td class="text-center"><%=link_to "過去のレビューを見る",review_path(race),class: "btn btn-sm btn-outline-info" %></td>
           </tr>
           <% end %>
         </tbody>
@@ -45,3 +43,13 @@
     </div>
   </div>
 </div>
+
+<style>
+.main-container {
+  background-image: url(<%= asset_path 'top2.jpg' %>);
+  margin-top:20px;
+  height:500px;
+  background-position: center;
+
+}
+</style>

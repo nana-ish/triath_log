@@ -5,11 +5,15 @@
     </div>
     <div class="col-md-9">
      <p class="h4 text-center mr-5 mt-2">
-      <%= link_to race.name,review_path(race) %>
-      <% if end_user_signed_in? %>
+      <% if admin_signed_in? %>
+        <%= link_to race.name,admin_review_path(race) %>
+      <% elsif end_user_signed_in? %>
+         <%= link_to race.name,review_path(race) %>
          <span id="favorite_buttons_<%= race.id %>">
           <%= render "public/race_favorites/race_favorite", race: race %>
          </span>
+      <% else %>
+           <%= link_to race.name,new_end_user_session_path %>
       <% end %>
      </p>
      <p class="text-center mr-5">レビュー件数：<%=race.reviews.count %>　お気に入り件数：<span id="favorite_count_<%=race.id%>"><%= race.race_favorites.count %></span></p>
