@@ -26,7 +26,6 @@ class Public::EndUsersController < ApplicationController
   def destroy
     @end_user = EndUser.find(params[:id])
     redirect_to root_path, notice: 'ゲストは変更・削除できません' if @end_user.email == 'guest@example.com'
-
     @end_user.destroy
     redirect_to  root_path, notice: '正常に削除されました。'
   end

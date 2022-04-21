@@ -4,7 +4,7 @@
       <p class="text-center marker-border-blue"><span class="h4"><%= @race.name %></span>(<%= @reviews.count %>件のレビュー)</p>
     </div>
   </div>
-  <!--レビューのまとめ始め-->
+  <!--レビュー平均始め-->
   <div class="row">
     <div class="col-md-6 ">
       <p class="text-left">開催地：<%= @race.venue %></p>
@@ -14,69 +14,64 @@
       <p class="text-left">公式サイト：<%= link_to @race.name,@race.link %></p>
     </div>
     <div class="col-md-6">
+      <% if @race.reviews.count >=1 %>
       <%= render 'avarage', race: @race,ave_score: @ave_score, ave_level: @ave_level,
       ave_course: @ave_course, ave_water: @ave_water, ave_sightseeing: @ave_sightseeing %>
+      <% end %>
     </div>
   </div>
-  <!--レビューのまとめ終わり-->
+  <!--レビュー平均終わり-->
+  <!--個人レビュー始め-->
   <div class ="row">
     <% @reviews.each do |review| %>
       <div class="col-md-3 border mt-3">
         <%= image_tag review.end_user.get_end_user_image(180,180), class: "mx-auto d-block mt-3"%>
-        <p class="text-center"><%= review.end_user.name %>さん</p>
+        <p class="text-center"><%= link_to review.end_user.name,end_user_path(review.end_user) %>さん</p>
         <p class="text-center">投稿日:<%= review.created_at.strftime('%Y/%m/%d')%></p>
+        <% if review.end_user == current_end_user %>
+          <p><%= link_to "投稿を編集する",edit_review_path(review),class: "btn btn-sm btn-outline-secondary btn-block"%><p>
+          <p><%= link_to "投稿を削除する",review_path(review), class: "btn btn-sm btn-outline-danger btn-block",
+              method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          </p>
+        <% end %>
       </div>
       <div class="col-md-9 border mt-3 ">
         <p class="text-left h4 mt-2 ml-3">
-            <%= review.title %>
+          <%= review.title %>
           <span id="favorite_buttons_<%= review.id %>">
             <%= render "public/review_favorites/review_favorite",review: review %>
           </span>
-          <span class="ml-2 h6">コメント：<%= review.review_comments.count %>件</span>
         </p>
         <div class ="row">
           <div class="col-md-7">
-           <%= render "personal_star",review: review %>
+            <%= render "personal_star",review: review %>
           </div>
           <div class="col-md-5">
-           <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
+            <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
           </div>
         </div>
         <p class="text-left mx-2"><%= review.comment %></p>
         <hr>
-        <div> <!--コメント一覧-->
-        <% if review.review_comments.count == 0 %>
-          <p>No Comment</p>
-        <% else %>
-          <% review.review_comments.each do |review_comment| %>
-            <div class ="row">
-              <div class="col-md-2 ml-5">
-                <%= image_tag review_comment.end_user.get_end_user_image(90,90), class: "mx-left d-block "%>
+        <div id="review_comments_<%= review.id %>">
+          <!--コメント一覧-->
+          <%= render partial: 'comments', locals: { review: review } %>
+        </div>
+          <!--コメント入力-->
+          <%= form_with model: ReviewComment,url:review_review_comments_path(review), local: false do|f| %>
+            <div class="row mb-2">
+              <div class="col-md-10">
+                <%= f.text_field :text, autocomplete: "text", class: "form-control",placeholder: 'コメント' %>
               </div>
-              <div class="col-md-9 ">
-                <span class="under_line"><%= review_comment.end_user.name %>さんからのコメント</span>
-                <p><%= review_comment.text %></p>
+              <div class="col-md-2">
+                <%= f.submit '投稿する', class: "btn btn-block btn-info" %>
               </div>
             </div>
-            <hr>
+            <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+            <%= f.hidden_field :review_id, value: review.id %>
           <% end %>
-        <% end %>
-        </div> <!--コメント一覧終わり-->
-        <div class ="row"> <!--コメント入力-->
-          <div class="col-md-10 mb-4">
-            <%= form_with model: ReviewComment,url:review_review_comments_path(review),local: true do|f| %>
-              <%= f.text_field :text, autocomplete: "text", class: "form-control",placeholder: 'コメント' %>
-              <%= f.hidden_field :end_user_id, value: current_end_user.id %>
-              <%= f.hidden_field :review_id, value:review.id %>
-          </div>
-          <div class="col-md-2 mb-4">
-              <%= f.submit '投稿する', class: "btn btn-sm btn-info" %>
-            <% end %>
-          </div>
-        </div><!--コメント終わり-->
       </div>
-    <% end %>
+    <% end %><!--個人レビュー終わり-->
   </div>
-   <%= paginate @reviews %>
+  <p class="mt-3"><%= paginate @reviews %></p>
   <div class="text-center m-5"><%=link_to "一覧に戻る",reviews_path,class: "btn btn-primary"%></div>
 </div>

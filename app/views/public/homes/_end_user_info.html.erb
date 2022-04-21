@@ -2,7 +2,9 @@
   <p class="h4 text-center marker-border-blue">ユーザー情報</p>
   <%= image_tag end_user.get_end_user_image(150,150), class: "mx-auto d-block"%><br>
   <div class="mb-3">name  :<%= end_user.name %></div>
-  <div class="mb-3">email :<%= end_user.email %></div>
+  <% if end_user == current_end_user %>
+    <div class="mb-3">email :<%= end_user.email %></div>
+  <% end %>
   <div class="mb-3">
     <%=link_to end_user_path(end_user) do%>
      <p>レビュー件数：<%= end_user.reviews.count %>件</p>

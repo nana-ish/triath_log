@@ -6,6 +6,15 @@ class Review < ApplicationRecord
   belongs_to:end_user
   belongs_to:race
 
+  validates :score, presence: true
+  validates :level, presence: true
+  validates :course, presence: true
+  validates :water, presence: true
+  validates :sightseeing, presence: true
+  validates :title, presence: true
+  validates :comment, presence: true
+  validates :race_id, presence: true
+
   has_one_attached :review_image
 
   def get_review_image(width, height)

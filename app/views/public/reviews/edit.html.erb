@@ -1,2 +1,116 @@
-<h1>Public::Reviews#edit</h1>
-<p>Find me in app/views/public/reviews/edit.html.erb</p>
+<div class="container">
+  <div class="mx-auto d-block mt-1">
+    <p class ="h3 text-center marker-border-blue">レビュー編集フォーム</p>
+    <%= render partial: 'layouts/error_message', locals: { model: @review } %>
+  </div>
+  <div class="row">
+    <div class="col-md-7 mx-auto d-block mt-2">
+      <%= form_with model: @review ,url: review_path(@review),local: true do|f| %>
+      <p><span class="mr-2 font-weight-bold">大会名 </span><%= f.collection_select :race_id ,Race.all, :id, :name ,include_blank:"選択して下さい" %></p>
+      <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th scope="row">総合評価</th>
+          <td></td>
+          <td>
+            <span class="field" id="score"></span>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">レベル</th>
+          <td>初心者向け</td>
+          <td>
+            <span class="field" id="level"></span>
+          </td>
+          <td>上級者向け</td>
+        </tr>
+        <tr>
+          <th scope="row">コース</th>
+          <td>平坦</td>
+          <td>
+            <span class="field" id="course"></span>
+          </td>
+          <td>起伏あり</td>
+        </tr>
+        <tr>
+          <th scope="row">水質</th>
+          <td>濁りなし</td>
+          <td>
+            <span class="field" id="water"></span>
+          </td>
+          <td>濁りあり</td>
+        </tr>
+        <tr>
+          <th scope="row">観光</th>
+          <td>少ない</td>
+          <td>
+            <span class="field" id="sightseeing"></span>
+          </td>
+          <td>多い</td>
+        </tr>
+      </tbody>
+      </table>
+        <%= f.text_field :title, autocomplete: "title", class: "form-control",placeholder: 'タイトル' %>
+        <%= f.text_area :comment,:size => "70x10", class: "form-control my-3",placeholder: 'レースの感想等お書きください' %>
+        <%= f.label :review_image, "写真：" %>
+        <%= f.file_field :review_image, accept: "image/*" %>
+        <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+        <%= f.submit '投稿する', class: "my-2 mx-auto d-block btn btn-primary" %>
+      <% end %>
+      <script>
+        // 画面が出来上がったときをトリガーとして
+        $('#score').empty();
+        $('#score').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review[score]',
+          score: <%= @review.score %>,
+          half: true,
+        });
+        $('#level').empty();
+        $('#level').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('review-off.png') %>',
+          starOn : '<%= asset_path('review-on.png') %>',
+          starHalf: '<%= asset_path('review-half.png') %>',
+          scoreName: 'review[level]',
+          score: <%= @review.level %>,
+          half: true,
+        });
+        $('#course').empty();
+        $('#course').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('review-off.png') %>',
+          starOn : '<%= asset_path('review-on.png') %>',
+          starHalf: '<%= asset_path('review-half.png') %>',
+          scoreName: 'review[course]',
+          score: <%= @review.course %>,
+          half: true,
+          });
+        $('#water').empty();
+        $('#water').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('review-off.png') %>',
+          starOn : '<%= asset_path('review-on.png') %>',
+          starHalf: '<%= asset_path('review-half.png') %>',
+          scoreName: 'review[water]',
+          score: <%= @review.water %>,
+          half: true,
+          });
+        $('#sightseeing').empty();
+        $('#sightseeing').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('review-off.png') %>',
+          starOn : '<%= asset_path('review-on.png') %>',
+          starHalf: '<%= asset_path('review-half.png') %>',
+          scoreName: 'review[sightseeing]',
+          score: <%= @review.sightseeing %>,
+          half: true,
+          });
+      </script>
+    </div>
+  </div>
+</div>

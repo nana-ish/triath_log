@@ -1,0 +1,23 @@
+<!--コメント一覧-->
+  <% if review.review_comments.count == 0 %>
+    <p>No Comment</p>
+  <% else %>
+  <h6 class="text-right ml-2 h6">コメント：<%= review.review_comments.count %>件</h6>
+    <% review.review_comments.each do |review_comment| %>
+      <div class ="row">
+        <div class="col-md-2 ml-5">
+          <%= image_tag review_comment.end_user.get_end_user_image(90,90), class: "mx-left d-block "%>
+        </div>
+        <div class="col-md-9 ">
+          <span class="under_line"><%= review_comment.end_user.name %>さんからのコメント</span>
+            <% if review_comment.end_user == current_end_user%>
+              <%= link_to "削除する", review_review_comment_path(review,review_comment), class: "btn btn-sm btn-outline-danger ",
+                  method: :delete, remote: true, "data-confirm" => "本当に削除しますか？" %>
+            <% end %>
+            <p><%= review_comment.text %></p>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  <% end %>
+ <!--コメント一覧終わり-->
