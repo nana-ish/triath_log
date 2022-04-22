@@ -1,10 +1,16 @@
   <div class="border mb-3">
     <p class="text-center h4 mt-4">
-      <%= link_to review.race.name,review_path(review.race) %>
-      <!--お気に入り-->
-      <span id="favorite_buttons_<%= review.id %>">
-        <%= render "public/review_favorites/review_favorite",review: review %>
-      </span>
+      <% if end_user_signed_in? %>
+        <%= link_to review.race.name,review_path(review.race) %>
+      <% else %>
+         <%= link_to review.race.name,admin_review_path(review.race) %>
+      <% end %>
+    <!--お気に入り-->
+      <% if end_user_signed_in? %>
+        <span id="favorite_buttons_<%= review.id %>">
+          <%= render "public/review_favorites/review_favorite",review: review %>
+        </span>
+      <% end %>
     <!--お気に入り 終わり-->
     </p>
     <p class="h6 mx-3">投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
@@ -26,6 +32,7 @@
       </div>
       <!--コメント入力-->
       <!--コメント入力-->
+       <% if end_user_signed_in? %>
         <%= form_with model: ReviewComment,url:review_review_comments_path(review), local: false do|f| %>
           <div class="row mb-2">
             <div class="col-md-10">
@@ -38,5 +45,6 @@
           <%= f.hidden_field :end_user_id, value: current_end_user.id %>
           <%= f.hidden_field :review_id, value: review.id %>
         <% end %>
+      <% end %>
     </div>
   </div>

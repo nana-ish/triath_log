@@ -1,27 +1,18 @@
 <div class="container">
-<p class="h3 text-center marker-border-blue">ユーザー詳細</p>
-<div class="row">
-  <div class="col-md-4">
-  <p class="h4 text-center marker-border-blue">ユーザー情報</p>
-    <%= image_tag @end_user.get_end_user_image(150,150), class: "mx-auto d-block"%><br>
-  <div class="mb-3 text-center"><%= @end_user.name %> </div>
-  <div class="mb-3 text-center"> Email :<%= @end_user.email %></div>
-  <div class="mb-3 text-center">
-     <p>レビュー投稿件数：<%= @end_user.reviews.count %>件</p>
-  </div>
-
-  <div class="mb-3"><%= link_to "編集する",edit_end_user_path(@end_user) ,class: "btn btn-primary btn-sm btn-block "%></div>
-  </div>
-  <div class="col-md-8 mt-4">
-   <p class="h4 text-center ">レビュー一覧</p>
-     <% @reviews.each do |review| %>
-       <%= review.title %>
-       <%= review.score %>
-       <%= review.course %>
-       <%= review.water %>
-       <%= review.sightseeing %>
-       <%= review.comment %>
-       <%= review.is_active %>
-     <% end %>
-  </div>
+<p class="h3 text-center marker-border-blue mt-3">ユーザー詳細</p>
+  <div class="row">
+    <div class="col-md-3">
+      <p class="h4 text-center marker-border-blue">ユーザー情報</p>
+      <%= image_tag @end_user.get_end_user_image(150,150), class: "mx-auto d-block"%>
+      <div class="mb-3 text-center"><%= @end_user.name %> </div>
+      <div class="mb-3 text-center"> Email :<%= @end_user.email %></div>
+      <div class="mb-3 text-center">レビュー投稿件数：<%= @end_user.reviews.count %>件</div>
+      <div class="mb-3"><%= link_to "編集する",edit_end_user_path(@end_user) ,class: "btn btn-primary btn-sm btn-block "%></div>
+    </div>
+    <div class="col-md-9">
+     <p class="h4 text-center marker-border-blue">レビュー一覧</p>
+       <% @reviews.each do |review| %>
+        <%= render partial: "public/end_users/review_index" ,locals: { review: review }%>
+       <% end %>
+    </div>
 </div>
