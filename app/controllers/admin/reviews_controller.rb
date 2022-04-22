@@ -21,7 +21,7 @@ class Admin::ReviewsController < ApplicationController
     @ave_sightseeing = @race.reviews.average(:sightseeing)
   end
 
- def destroy
+  def destroy
     review = Review.find(params[:id])
     review.destroy
     if review.destroy

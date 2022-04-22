@@ -32,7 +32,7 @@
       </div>
       <!--コメント入力-->
       <!--コメント入力-->
-       <% if end_user_signed_in? %>
+      <% if end_user_signed_in? %>
         <%= form_with model: ReviewComment,url:review_review_comments_path(review), local: false do|f| %>
           <div class="row mb-2">
             <div class="col-md-10">

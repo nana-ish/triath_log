@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :races,only:[:new,:show,:edit,:create,:update]
     resources :end_users,only:[:show,:index,:edit,:update]
+    resources :districts,only:[:create,:edit,:update,:destroy]
     resources :reviews,only:[:index,:show,:destroy]do
       resources :review_comments,only:[:update]
    end

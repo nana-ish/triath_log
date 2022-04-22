@@ -4,6 +4,7 @@
       <%= render "public/reviews/districts",districts: @districts %>
     </div>
     <div class="col-md-9">
+       <div class="text-right"> <%=link_to "大会登録情報を追加する",new_admin_race_path, class: "btn btn-primary"%></div>
       <%if end_user_signed_in? || admin_signed_in? %>
         <div class="text-right mb-2"> <%= render "../views/layouts/search"%></div>
       <% end %>

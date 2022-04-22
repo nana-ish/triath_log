@@ -1,0 +1,7 @@
+ <p class>地域変更・削除フォーム</p>
+  <%= form_with model: @district, url:admin_district_path(@district) do |f| %>
+    <%= f.text_field :name %>
+    <%= f.submit "変更" %>
+  <% end %>
+  <%= link_to "削除する", admin_district_path(@district), class: "btn btn-sm btn-outline-danger",
+  method: :delete,"data-confirm" => "本当に削除しますか？" %>

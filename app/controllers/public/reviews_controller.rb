@@ -9,6 +9,7 @@ class Public::ReviewsController < ApplicationController
   def index
     @end_user =current_end_user
     @districts = District.all
+    @district = District.new
     if params[:district_id]
        @district = District.find(params[:district_id])
        @races = @district.races.page(params[:page]).per(3)
