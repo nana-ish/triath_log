@@ -1,3 +1,4 @@
+<%if current_end_user.is_deleted == false %>
 <div class="container">
   <div class="mx-auto d-block mt-1">
     <p class ="h3 text-center marker-border-blue">レビュー編集フォーム</p>
@@ -114,3 +115,12 @@
     </div>
   </div>
 </div>
+<% else%>
+<div class="container">
+  <div class="mx-auto d-block mt-5">
+      <p class ="h4 text-center">このUserは管理者によってアカウントが停止されたため,<br>
+      レビューの書き込みはできません。</p>
+      <p class="text-center"><%=link_to "戻る",root_path,class: "my-2 btn btn-primary"%></p>
+  <div>
+</div>
+<% end %>
