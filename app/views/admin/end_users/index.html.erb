@@ -23,7 +23,7 @@
           <td class="text-center"><%=link_to end_user.name,admin_end_user_path(end_user) %></td>
           <td class="text-center"><%= end_user.email %></td>
           <% if end_user.is_deleted == true %>
-            <td class="text-center">退会済み </td>
+            <td class="text-center">アカウント停止中</td>
           <% elsif %>
             <td class="text-center">利用中 </td>
           <% end %>
