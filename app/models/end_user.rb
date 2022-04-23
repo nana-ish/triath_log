@@ -2,7 +2,7 @@ class EndUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,:authentication_keys => [:name]
 
   # ER図参照
   has_many :reviews, dependent: :destroy
