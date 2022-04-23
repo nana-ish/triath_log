@@ -23,20 +23,22 @@
         </thead>
         <tbody>
           <% @races.each do |race| %>
-          <tr>
-            <td class="text-center"><%= race.date.strftime('%Y/%m/%d') %></td>
-            <td class="text-center"><%= link_to race.name,race.link %></td>
-            <% if race.get_race_situation(race) == "0" %>
-              <td class="text-center">申し込み受付中</td>
-            <% elsif race.get_race_situation(race) == "1" %>
-              <td class="text-center">申し込み終了</td>
-            <% elsif race.get_race_situation(race) == "2" %>
-              <td class="text-center">大会終了</td>
-            <% else %>
-              <td class="text-center">確認中</td>
+           <% if race.is_active == true %>
+            <tr>
+              <td class="text-center"><%= race.date.strftime('%Y/%m/%d') %></td>
+              <td class="text-center"><%= link_to race.name,race.link %></td>
+              <% if race.get_race_situation(race) == "0" %>
+                <td class="text-center">申し込み受付中</td>
+              <% end %>
+              <% if race.get_race_situation(race) == "1" %>
+                <td class="text-center">申し込み終了</td>
+              <% end %>
+              <% if race.get_race_situation(race) == "2" %>
+                <td class="text-center">大会終了</td>
+              <% end %>
+              <td class="text-center"><%=link_to "過去のレビューを見る",review_path(race),class: "btn btn-sm btn-outline-info" %></td>
+            </tr>
             <% end %>
-            <td class="text-center"><%=link_to "過去のレビューを見る",review_path(race),class: "btn btn-sm btn-outline-info" %></td>
-          </tr>
           <% end %>
         </tbody>
       </table>

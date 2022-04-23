@@ -1,12 +1,12 @@
 <div class="container">
   <div class="mx-auto d-block mt-1">
-    <p class ="h3 text-center marker-border-blue">レビュー投稿フォーム</p>
+      <p class ="h3 text-center marker-border-blue">レビュー投稿フォーム</p>
     <%= render partial: 'layouts/error_message', locals: { model: @review } %>
   </div>
   <div class="row">
     <div class="col-md-7 mx-auto d-block mt-2">
       <%= form_with model: @review ,url:reviews_path,local: true do|f| %>
-      <p><span class="mr-2 font-weight-bold">大会名 </span><%= f.collection_select :race_id ,Race.all, :id, :name ,include_blank:"選択して下さい"%></p>
+      <p><span class="mr-2 font-weight-bold">大会名 </span><%= f.collection_select :race_id ,Race.where(is_active: true), :id, :name ,include_blank:"選択して下さい"%></p>
       <table class="table table-borderless">
       <tbody>
         <tr>

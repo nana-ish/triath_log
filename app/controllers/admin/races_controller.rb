@@ -35,7 +35,7 @@ class Admin::RacesController < ApplicationController
   private
 
   def race_params
-    params.require(:race).permit(:district_id,:name,:date,:cost,:deadline,:link,:categorie,:venue,:introduction)
+    params.require(:race).permit(:district_id,:name,:date,:cost,:deadline,:link,:categorie,:venue,:introduction,:is_active)
   end
 
 end

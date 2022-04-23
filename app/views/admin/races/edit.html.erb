@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12 mt-1">
       <h3 class="my-4 text-center marker-border-blue">レース情報変更フォーム</h3>
+      <%= render partial: 'layouts/error_message', locals: { model: @race } %>
         <%= form_with model: @race,url:admin_race_path(@race),local: true do|f| %>
           <spsn>大会開催地域：</span>
           <%= f.collection_select :district_id ,District.all, :id, :name, include_blank: "選択して下さい",class: "my-2 form-control" %>
@@ -9,16 +10,19 @@
           <spsn>大会開催日：</span>
           <%= f.date_field :date, autocomplete: "date", class: "my-2" %>
           <spsn class="ml-4">大会申し込み締め切り：</span>
+          <!--入力必須項目-->
           <%= f.date_field :deadline, autocomplete: "deadline", class: "my-2"%>
           <%= f.text_field :cost, autocomplete: "cost", class: "my-2 form-control",placeholder: '税込出場費　(例：33000)' %>
           <%= f.text_field :link, autocomplete: "link", class: "my-2 form-control",placeholder: '公式サイトのリンクのurlを記入してください' %>
           <%= f.text_field :categorie, autocomplete: "categorie", class: "my-2 form-control",placeholder: '開催種目カテゴリー(例:スタンダード(swim:1.5㎞,bike:40㎞,run:10㎞）)' %>
           <%= f.text_field :venue, autocomplete: "venue", class: "my-2 form-control",placeholder: '開催市町村(例：〇〇県〇〇市)' %>
           <%= f.text_area :introduction, autocomplete: "introduction",:size => "70x10",class: "my-2 form-control",placeholder: 'レースの説明等を記入してください' %>
+          <!--公開・非公開-->
           <%= f.radio_button :is_active, 'true' ,class: "my-2"%>
           <%= f.label :is_active, '公開する', value: true ,class: "my-2" %>
           <%= f.radio_button :is_active, 'false',class: "my-2" %>
           <%= f.label :is_active, '非公開にする', value: false ,class: "my-2"%><br>
+          <!--写真追加-->
           <%= f.file_field :race_image, accept: "image/*",class: "my-2"%><br>
           <%= f.submit '変更する', class: "btn btn-primary my-2 mx-auto" %>
         <% end %>

@@ -17,15 +17,9 @@
             <div class="d-flex">
               <a class="navbar-brand p-3" href="/"><%= image_tag 'logo_name.png', class: 'img-fluid' %></a>
               <a class="navbar-brand p-3" href="/"><%= image_tag 'logo_pic.png', class: 'img-fluid' %></a>
-                <% if end_user_signed_in? %>
-                  <div class = "text-center">
-                    <p class><p>
-                    <p class><%#= current_end_user.name %><p>
-                  </div>
-                <% end %>
                 <% if admin_signed_in? %>
-                  <div class = "text-center">
-                    <p class>管理者専用<p>
+                  <div class = "text-center mt-4">
+                    <p class>管理者専用</p>
                   </div>
                 <% end %>
             </div>

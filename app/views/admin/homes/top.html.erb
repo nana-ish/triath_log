@@ -7,7 +7,7 @@
         <th class="text-center">大会名</th>
         <th class="text-center">申し込み締め切り日</th>
         <th class="text-center">受付け状況</th>
-        <th class="text-center"></th>
+        <th class="text-center">公開ステータス</th>
         <th class="text-center"></th>
       </tr>
     </thead>
@@ -17,15 +17,24 @@
           <td class="text-center"><%= race.date.strftime('%Y/%m/%d') %></td>
           <td class="text-center"><%= link_to race.name,race.link %></td>
           <td class="text-center"><%= race.deadline.strftime('%Y/%m/%d') %></td>
-          <% if race.get_race_situation(race) == "0" %>
-            <td class="text-center">申し込み受付中</td>
-          <% elsif race.get_race_situation(race) == "1" %>
-            <td class="text-center">申し込み終了</td>
-          <% elsif race.get_race_situation(race) == "2" %>
-            <td class="text-center">大会終了</td>
-          <% else %>
-            <td class="text-center">確認中</td>
-          <% end %>
+          <td class="text-center">
+            <% if race.get_race_situation(race) == "0" %>
+              <p>申し込み受付中</p>
+            <% elsif race.get_race_situation(race) == "1" %>
+              <p>申し込み終了</p>
+            <% elsif race.get_race_situation(race) == "2" %>
+              <p>大会終了</p>
+            <% else %>
+              <p>確認中</p>
+            <% end %>
+          </td>
+          <td>
+            <% if race.is_active == true %>
+              <p class= "text-center">公開中</p>
+            <% else %>
+             <p class= "text-center">非公開中</p>
+            <% end %>
+          </td>
           <td><%=link_to "詳細を確認する",admin_race_path(race) %></td>
         </tr>
       <% end %>

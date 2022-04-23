@@ -14,7 +14,7 @@
       <p class="text-left">出場費(税込み)：<%= @race.cost %> 円</p>
       <p class="text-left">開催種目：<%= @race.categorie %></p>
       <p class="text-left">公式サイト：<%= link_to @race.link,@race.link %></p>
-      <%if @race.is_active %>
+      <% if @race.is_active == true %>
         <p class="text-left">公開ステータス：公開中</p>
       <% else %>
         <p class="text-left">公開ステータス：非公開中</p>
