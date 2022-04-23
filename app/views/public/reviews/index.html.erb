@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-5">
-    <div class ="col-md-3">
+    <div class ="col-md-3 mt-3">
       <%= render "districts",districts: @districts %>
     </div>
     <div class="col-md-9">
@@ -12,10 +12,11 @@
         <%= render "public/reviews/race_index", race: race  %>
       <% end %>
       <p class="mt-3"><%= paginate @races %></p>
-      <%if end_user_signed_in? %>
-        <div class="text-center mt-5"> <%=link_to "レビューを書く",new_review_path, class: "btn btn-primary"%></div>
-      <% else %>
-        <div class="text-right mt-5"> <%=link_to "これより先は、ユーザー登録をすることで閲覧できます。",new_end_user_registration_path, class: "btn btn-link"%></div>
+      <%if end_user_signed_in?%>
+        <div class="text-center mt-5"> <%=link_to "レビューを書く",new_review_path, class: "btn btn-primary" %></div>
+      <% end %>
+      <% unless (end_user_signed_in?) || (admin_signed_in?)%>
+        <div class="text-right mt-5"> <%=link_to "これより先は、ユーザー登録をすることで閲覧できます。",new_end_user_registration_path, class: "btn btn-link" %></div>
       <% end %>
     </div>
   </div>

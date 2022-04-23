@@ -7,6 +7,7 @@
      <p class="h4 text-center mr-5 mt-2">
       <% if admin_signed_in? %>
         <%= link_to race.name,admin_review_path(race) %>
+        <%= link_to "大会情報を変更する",edit_admin_race_path(race),class: "btn btn-sm btn-outline-info"%>
       <% elsif end_user_signed_in? %>
          <%= link_to race.name,review_path(race) %>
          <span id="favorite_buttons_<%= race.id %>">

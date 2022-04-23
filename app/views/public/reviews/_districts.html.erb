@@ -1,8 +1,7 @@
 <table class="table mt-1">
   <thead>
     <tr>
-      <th class="text-center">地域で探す</th>
-      <th></th>
+      <p class="text-center marker-border-blue">地域で探す</p>
     </tr>
   </thead>
   <tbody>
@@ -10,16 +9,16 @@
     <tr>
       <td class="text-center"><%= link_to "#{district.name}",reviews_path(district_id: district.id) %></td>
       <% if admin_signed_in? %>
-      <td class="text-center"><%= link_to "編集" ,edit_admin_district_path(district) %></td>
+      <td class="text-center"><%= link_to "編集する" ,edit_admin_district_path(district) ,class: "ml-2 btn btn-sm btn-outline-secondary"%></td>
       <% end %>
     </tr>
     <% end %>
   <tbody>
 </table>
 <% if admin_signed_in? %>
- <p class> ★地域を追加登録する</p>
+ <p class="marker-border-blue text-center">★地域を追加登録する</p>
   <%= form_with model: @district ,url:admin_districts_path, local: true do |f| %>
     <%= f.text_field :name %>
-    <%= f.submit "追加" %>
+    <%= f.submit "追加" ,class: "ml-2 btn btn-sm btn-info"%>
   <% end %>
 <% end %>

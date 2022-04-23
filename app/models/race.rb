@@ -6,13 +6,22 @@ class Race < ApplicationRecord
   belongs_to :district
   #belongs_to :end_user
 
+  validates :district_id, presence: true
+  validates :name, presence: true
+  validates :date, presence: true
+  validates :cost, presence: true
+  validates :deadline, presence: true
+  validates :link, presence: true
+  validates :categorie, presence: true
+  validates :venue, presence: true
+  validates :introduction, presence: true
 
   has_one_attached :race_image
 
   def get_race_image(width, height)
     unless race_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      race_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type:'image/jpeg')
+      race_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type: 'image/jpeg')
     end
       race_image.variant(resize_to_fit:[width, height]).processed
   end
@@ -22,11 +31,13 @@ class Race < ApplicationRecord
     race_date = race.date
     deadline = race.deadline
     if (now < deadline)
-      z
+      return "0"
     elsif (now > deadline) && (now < race_date)
       return "1"
     elsif (now > race_date)
       return "2"
+    else
+      return "3"
     end
   end
 
