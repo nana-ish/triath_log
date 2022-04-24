@@ -57,6 +57,7 @@
           <%= render partial: 'comments', locals: { review: review } %>
         </div>
           <!--コメント入力-->
+        <% if current_end_user.is_deleted == false%>
           <%= form_with model: ReviewComment,url:review_review_comments_path(review), local: false do|f| %>
             <div class="row mb-2">
               <div class="col-md-10">
@@ -69,6 +70,9 @@
             <%= f.hidden_field :end_user_id, value: current_end_user.id %>
             <%= f.hidden_field :review_id, value: review.id %>
           <% end %>
+        <% else %>
+          <p class="text-center text-danger">このアカウントは管理者によってコメントの投稿を停止しております。</p>
+        <% end %>
       </div>
     <% end %><!--個人レビュー終わり-->
   </div>
