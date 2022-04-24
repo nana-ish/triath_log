@@ -25,17 +25,17 @@ ActiveStorage.start()
 
 //require("jquery")
 
-/**
-$(document).on('turbolinks:load', function() {
 
-  // Header Auto Padding
-  $(window).resize(function() {
-    //リサイズされたときの処理
-    var navbarHeight = $(".navbar").outerHeight()
-    $("body").css("padding-top", navbarHeight + "px")
-  });
+// $(document).on('turbolinks:load', function() {
 
-});
-*/
+//   // Header Auto Padding
+//   $(window).resize(function() {
+//     //リサイズされたときの処理
+//     var navbarHeight = $(".navbar").outerHeight()
+//     $("body").css("padding-top", navbarHeight + "px")
+//   });
+
+// });
+
 window.$ = window.jQuery = require('jquery');
 require('packs/raty')

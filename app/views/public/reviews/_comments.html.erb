@@ -19,6 +19,9 @@
             <% if review_comment.end_user == current_end_user%>
               <%= link_to "削除する", review_review_comment_path(review,review_comment), class: "btn btn-sm btn-outline-danger ",
                   method: :delete, remote: true, "data-confirm" => "本当に削除しますか？" %>
+            <% elsif admin_signed_in? %>
+               <%= link_to "削除する",  admin_review_review_comment_path(review,review_comment), class: "btn btn-sm btn-outline-danger ",
+                  method: :delete, remote: true, "data-confirm" => "本当に削除しますか？" %>
             <% end %>
             <p><%= review_comment.text %></p>
         </div>

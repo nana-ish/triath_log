@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :end_users,only:[:show,:index,:edit,:update]
     resources :districts,only:[:create,:edit,:update,:destroy]
     resources :reviews,only:[:index,:show,:destroy]do
-      resources :review_comments,only:[:update]
+      resources :review_comments,only:[:destroy]
    end
   end
 
