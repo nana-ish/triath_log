@@ -18,6 +18,20 @@ class Race < ApplicationRecord
 
   has_one_attached :race_image
 
+  validate :race_image_type, :race_image_size
+
+  def race_image_type
+    if (race_image.attached?) && (!race_image.blob.content_type.in?(%('image/jpeg image/png')))
+      errors.add(:race_image, 'はjpegまたはpng形式でアップロードしてください')
+    end
+  end
+
+  def race_image_size
+    if (race_image.attached?) && (race_image.blob.byte_size > 3.megabytes)
+      errors.add(:race_image, "は1つのファイル3MB以内にしてください")
+    end
+  end
+
   def get_race_image(width, height)
     unless race_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

@@ -8,44 +8,43 @@
     <div class="col-md-7 mx-auto d-block mt-2">
       <%= form_with model: @review ,url:reviews_path,local: true do|f| %>
       <p><span class="mr-2 font-weight-bold">大会名 </span><%= f.collection_select :race_id ,Race.where(is_active: true), :id, :name ,include_blank:"選択して下さい"%></p>
-      <table class="table table-borderless">
+      <table class="table-wrap table table-borderless">
       <tbody>
         <tr>
-          <th scope="row">総合評価</th>
-           <td></td>
-           <td><span class="field" id="score"></span></td>
-           <td></td>
+         <th class="th_width">総合評価</th>
+         <td class="td1_width"></td>
+         <td class="td2_width"><span class="field" id="score"></span></td>
+         <td class="td3_width"></td>
         </tr>
         <tr>
-          <th scope="row">レベル</th>
-           <td>初心者向け</td>
-           <td><span class="field" id="level"></span></td>
-           <td>上級者向け</td>
+          <th class="th_width">レベル</th>
+          <td class="td1_width">初心者向け</td>
+          <td class="td2_width"><span class="field" id="level"></span></td>
+          <td class="td3_width">上級者向け</td>
         </tr>
         <tr>
-          <th scope="row">コース</th>
-          <td>平坦</td>
-          <td><span class="field" id="course"></span></td>
-          <td>起伏あり</td>
+          <th class="th_width">コース</th>
+          <td class="td1_width">平坦</td>
+          <td class="td2_width"><span class="field" id="course"></span></td>
+          <td class="td3_width">起伏あり</td>
         </tr>
         <tr>
-          <th scope="row">水質</th>
-          <td>濁りなし</td>
-          <td><span class="field" id="water"></span></td>
-          <td>濁りあり</td>
+          <th class="th_width">水質</th>
+          <td class="td1_width">濁りなし</td>
+          <td class="td2_width"><span class="field" id="water"></span></td>
+          <td class="td3_width">濁りあり</td>
         </tr>
         <tr>
-          <th scope="row">観光</th>
-          <td>少ない</td>
-          <td><span class="field" id="sightseeing"></span></td>
-          <td>多い</td>
+          <th class="th_width">観光</th>
+          <td class="td1_width">少ない</td>
+          <td class="td2_width"><span class="field" id="sightseeing"></span></td>
+          <td class="td3_width">多い</td>
         </tr>
       </tbody>
       </table>
         <%= f.text_field :title, autocomplete: "title", class: "form-control",placeholder: 'タイトル' %>
         <%= f.text_area :comment,:size => "70x10", class: "form-control my-3",placeholder: 'レースの感想等お書きください' %>
-        <%= f.label :review_image, "写真：" %>
-        <%= f.file_field :review_image, accept: "image/*" %>
+        <span>写真：</span><%= f.file_field :review_image, accept: "image/*" %>
         <%= f.hidden_field :end_user_id, value: current_end_user.id %>
       <script>
         $('#score').empty();

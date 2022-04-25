@@ -24,7 +24,7 @@
   <!--個人レビュー始め-->
   <div class ="row">
     <% @reviews.each do |review| %>
-      <div class="col-md-3 border mt-3">
+      <div class="col-sm-12 col-lg-3 border mt-3">
         <%= image_tag review.end_user.get_end_user_image(180,180), class: "mx-auto d-block mt-3"%>
         <p class="text-center"><%= link_to review.end_user.name,end_user_path(review.end_user) %>さん</p>
         <p class="text-center">投稿日:<%= review.created_at.strftime('%Y/%m/%d')%></p>
@@ -35,7 +35,7 @@
           </p>
         <% end %>
       </div>
-      <div class="col-md-9 border mt-3 ">
+      <div class="col-sm-12 col-lg-9 border mt-3 ">
         <p class="text-left h4 mt-2 ml-3">
           <%= review.title %>
           <span id="favorite_buttons_<%= review.id %>">

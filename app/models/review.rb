@@ -17,10 +17,24 @@ class Review < ApplicationRecord
 
   has_one_attached :review_image
 
+  validate :review_image_type, :review_image_size
+
+  def review_image_type
+    if (review_image.attached?) &&(!review_image.blob.content_type.in?(%('image/jpeg image/png')))
+      errors.add(:review_image, 'はjpegまたはpng形式でアップロードしてください')
+    end
+  end
+
+  def review_image_size
+    if (review_image.attached?) &&(review_image.blob.byte_size > 3.megabytes)
+      errors.add(:review_image, "は1つのファイル3MB以内にしてください")
+    end
+  end
+
   def get_review_image(width, height)
     unless review_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      review_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type:'image/jpeg')
+      review_image.attach(io: File.open(file_path), filename: 'default-image.jpg',content_type: 'image/jpeg')
     end
       review_image.variant(resize_to_fit:[width, height]).processed
   end

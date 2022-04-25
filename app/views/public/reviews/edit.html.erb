@@ -54,7 +54,7 @@
       </table>
         <%= f.text_field :title, autocomplete: "title", class: "form-control",placeholder: 'タイトル' %>
         <%= f.text_area :comment,:size => "70x10", class: "form-control my-3",placeholder: 'レースの感想等お書きください' %>
-        <%= f.label :review_image, "写真：" %>
+        <span>写真：</span>
         <%= f.file_field :review_image, accept: "image/*" %>
         <%= f.hidden_field :end_user_id, value: current_end_user.id %>
         <%= f.submit '編集する', class: "my-2 mx-auto d-block btn btn-primary" %>

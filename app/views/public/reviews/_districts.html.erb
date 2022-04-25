@@ -5,6 +5,9 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td class="text-center"><%= link_to "全国",reviews_path %></td>
+    </tr>
     <% districts.each do |district| %>
     <tr>
       <td class="text-center"><%= link_to "#{district.name}",reviews_path(district_id: district.id) %></td>

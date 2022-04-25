@@ -11,6 +11,19 @@ class EndUser < ApplicationRecord
   has_many:review_favorites, dependent: :destroy
 
   has_one_attached :end_user_image
+  validate :end_user_image_type, :end_user_image_size
+
+  def end_user_image_type
+    if (end_user_image.attached?) && (!end_user_image.blob.content_type.in?(%('image/jpeg image/png')))
+      errors.add(:end_user_image, 'はjpegまたはpng形式でアップロードしてください')
+    end
+  end
+
+  def end_user_image_size
+    if (end_user_image.attached?) && (end_user_image.blob.byte_size > 3.megabytes)
+      errors.add(:end_user_image, "は1つのファイル3MB以内にしてください")
+    end
+  end
 
   def get_end_user_image(width, height)
     unless end_user_image.attached?
@@ -44,6 +57,5 @@ class EndUser < ApplicationRecord
       @end_user = EndUser.all
     end
   end
-
 
 end

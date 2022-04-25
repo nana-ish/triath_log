@@ -1,5 +1,7 @@
 class Public::RaceFavoritesController < ApplicationController
 
+  before_action :autheniticate_end_user, {only: [:index,:create,:destroy]}
+
   def index
     @end_user = EndUser.find(params[:end_user_id])
     @race_favorites = @end_user.race_favorites

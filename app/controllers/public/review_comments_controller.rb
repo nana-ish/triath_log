@@ -1,5 +1,7 @@
 class Public::ReviewCommentsController < ApplicationController
 
+  before_action :autheniticate_end_user, {only: [:create,:destroy]}
+
   def create
     review_comment = ReviewComment.new(comment_params)
     if review_comment.save

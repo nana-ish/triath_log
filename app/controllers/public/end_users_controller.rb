@@ -1,5 +1,7 @@
 class Public::EndUsersController < ApplicationController
 
+  before_action :autheniticate_end_user, {only: [:show,:edit,:update,:destroy]}
+
   def show
     @end_user = EndUser.find(params[:id])
     @reviews = @end_user.reviews
@@ -19,7 +21,7 @@ class Public::EndUsersController < ApplicationController
     if @end_user.update(end_user_params)
       redirect_to root_path, notice: '会員情報が正常に更新されました。'
     else
-      render edit, notice: '会員情報の更新に失敗しました。'
+      redirect_to edit_end_user_path(@end_user), notice: '会員情報の更新に失敗しました。'
     end
   end
 

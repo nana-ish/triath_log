@@ -37,7 +37,7 @@ Rails.application.routes.draw do
        resources :review_comments,only:[:create,:destroy]
     end
 
-    resources :races,only:[:show,:index] do
+    resources :races,only:[:show] do
       resources :race_favorites, only:[ :create, :destroy]
     end
 
