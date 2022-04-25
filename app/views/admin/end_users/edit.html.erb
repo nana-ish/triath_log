@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render partial: 'layouts/error_message', locals: { model: @end_user } %>
   <%= form_with model: @end_user ,url:admin_end_user_path(@end_user),local: true do|f| %>
     <div class="mt-5">
       <div class ="col-md-6 mx-auto d-block">

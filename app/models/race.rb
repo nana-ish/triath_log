@@ -4,9 +4,10 @@ class Race < ApplicationRecord
   has_many :race_favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
   belongs_to :district
+  #belongs_to :district,optional: :true
   #belongs_to :end_user
 
-  validates :district_id, presence: true
+  # validates :district_id, presence: true
   validates :name, presence: true
   validates :date, presence: true
   validates :cost, presence: true

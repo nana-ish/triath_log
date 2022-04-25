@@ -1,0 +1,41 @@
+ja:
+  activerecord:
+    models:
+      admin: "管理者"
+      end_user: "利用者"
+      race: "大会"
+      review: "レビュー"
+      district: "開催地域"
+    attributes:
+      admin:
+        encrypted_password: "パスワード"
+        email: "メール"
+      end_user:
+        encrypted_password: "パスワード"
+        email: "メール"
+        name: "名前"
+        is_deleted: "退会ステータス"
+        end_user_image: "写真"
+      race:
+        district: "開催地域"
+        name: "大会名"
+        date: "大会開催日"
+        cost: "大会出場費"
+        deadline: "大会申し込み日"
+        link: "リンク"
+        categorie: "大会種目"
+        venue: "大会開催地"
+        introduction: "大会概要説明"
+        race_image: "写真"
+      review:
+        race_id: "大会名"
+        score: "総合得点"
+        level: "レベル"
+        course: "コース"
+        water: "水質"
+        sightseeing: "観光"
+        title: "タイトル"
+        comment: "大会の感想"
+      district:
+        name: "地域選択"
+        review_image: "写真"

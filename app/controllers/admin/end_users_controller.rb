@@ -21,7 +21,7 @@ class Admin::EndUsersController < ApplicationController
     if @end_user.update(end_user_params)
       redirect_to admin_end_users_path, notice: '会員情報が正常に更新されました。'
     else
-      redirect_to edit_admin_end_user_path(@end_user), notice: '会員情報の更新に失敗しました。'
+      render "edit", notice: '会員情報の更新に失敗しました。'
     end
   end
 

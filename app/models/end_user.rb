@@ -10,6 +10,9 @@ class EndUser < ApplicationRecord
   has_many:comments, dependent: :destroy
   has_many:review_favorites, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+
   has_one_attached :end_user_image
   validate :end_user_image_type, :end_user_image_size
 
