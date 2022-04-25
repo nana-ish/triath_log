@@ -1,4 +1,7 @@
 class Admin::EndUsersController < ApplicationController
+
+  before_action :autheniticate_admin, {only: [:show,:index,:edit,:update,:destroy]}
+
   def show
     @end_user = EndUser.find(params[:id])
     @reviews = @end_user.reviews

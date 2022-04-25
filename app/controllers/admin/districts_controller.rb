@@ -1,5 +1,7 @@
 class Admin::DistrictsController < ApplicationController
 
+  before_action :autheniticate_admin, {only: [:create,:edit,:update,:destroy]}
+
   def create
     @district = District.new(district_params)
     if @district.save
@@ -37,5 +39,5 @@ class Admin::DistrictsController < ApplicationController
   def district_params
     params.require(:district).permit(:name)
   end
-  
+
 end

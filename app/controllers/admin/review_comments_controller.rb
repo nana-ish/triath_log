@@ -1,5 +1,7 @@
 class Admin::ReviewCommentsController < ApplicationController
 
+  before_action :autheniticate_admin, {only: [:destroy]}
+
   def destroy
     review_comment = ReviewComment.find_by(id: params[:id],review_id: params[:review_id])
     review_comment.destroy

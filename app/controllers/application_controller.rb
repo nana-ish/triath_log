@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
   end
 # アクセス権限
   def autheniticate_end_user
-    # binding.pry
     if @current_end_user == nil
       flash[:notice] = "閲覧には、ログインが必要です"
       redirect_to  new_end_user_session_path

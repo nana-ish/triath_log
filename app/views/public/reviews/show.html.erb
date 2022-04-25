@@ -61,10 +61,10 @@
           <%= form_with model: ReviewComment,url:review_review_comments_path(review), local: false do|f| %>
             <div class="row mb-2">
               <div class="col-md-10">
-                <%= f.text_field :text, autocomplete: "text", class: "form-control",placeholder: 'コメント' %>
+                <%= f.text_field :text, autocomplete: "text", class: "form-control my-2",placeholder: 'コメント' %>
               </div>
-              <div class="col-md-2">
-                <%= f.submit '投稿する', class: "btn btn-block btn-info" %>
+              <div class="col-md-2 text-center">
+                <%= f.submit '投稿する', class: "btn btn-info my-2" %>
               </div>
             </div>
             <%= f.hidden_field :end_user_id, value: current_end_user.id %>

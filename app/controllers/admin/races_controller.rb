@@ -1,4 +1,7 @@
 class Admin::RacesController < ApplicationController
+
+  before_action :autheniticate_admin, {only: [:new,:show,:create,:edit,:update]}
+
   def new
     @race = Race.new
   end

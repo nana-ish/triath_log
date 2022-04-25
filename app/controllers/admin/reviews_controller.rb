@@ -1,5 +1,7 @@
 class Admin::ReviewsController < ApplicationController
 
+  before_action :autheniticate_admin, {only: [:index,:show,:destroy]}
+
   def index
     @end_user =current_end_user
     @districts = District.all
