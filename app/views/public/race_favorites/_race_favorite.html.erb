@@ -1,0 +1,6 @@
+<!--レースお気に入り-->
+<% if current_end_user.race_favorited?(race) %>
+  <%= link_to "お気に入りから削除する",race_race_favorite_path(race.id, 1), method: :delete , remote: true ,class: "btn btn-sm btn-outline-info"%>
+<% else %>
+  <%= link_to "お気に入りに登録する",race_race_favorites_path(race.id), method: :post, remote: true ,class: "btn btn-sm btn-info" %>
+<% end %>

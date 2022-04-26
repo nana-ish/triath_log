@@ -4,7 +4,7 @@ class CreateRaces < ActiveRecord::Migration[6.1]
       t.integer :district_id
       t.string :name
       t.date :date
-      t.integer :cost
+      t.string :cost
       t.date :deadline
       t.text :link
       t.string :categorie

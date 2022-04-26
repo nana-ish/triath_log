@@ -1,0 +1,10 @@
+ <!--お気に入り-->
+<% if current_end_user.review_favorited?(review.id) %>
+  <%= link_to review_review_favorite_path(review.id, 1), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary ml-2" do %>
+    <span>❤  ︎<%= review.review_favorites.count %>　いいね<span>
+  <% end %>
+<% else %>
+  <%= link_to review_review_favorites_path(review.id), method: :post,remote: true,class: "btn btn-sm btn-outline-secondary ml-2" do %>
+    <span>♡ <%= review.review_favorites.count %>　いいね<span>
+  <% end %>
+<% end %>

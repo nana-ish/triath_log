@@ -25,17 +25,36 @@ ActiveStorage.start()
 
 //require("jquery")
 
-/**
+
 $(document).on('turbolinks:load', function() {
 
   // Header Auto Padding
+  //リサイズされたときの処理
   $(window).resize(function() {
-    //リサイズされたときの処理
     var navbarHeight = $(".navbar").outerHeight()
     $("body").css("padding-top", navbarHeight + "px")
+    var footerHeight = $("footer").outerHeight()
+    $("body").css("padding-bottom", footerHeight + "px")
+
+    if ($(".main-container").length > 0) {
+      var windowHeight = $(window).outerHeight()
+      $(".main-container").css("height", (windowHeight - navbarHeight - footerHeight + 1) + "px")
+    }
   });
 
+  // $(window).reload(function() {
+  //   var navbarHeight = $(".navbar").outerHeight()
+  //   $("body").css("padding-top", navbarHeight + "px")
+  //   var footerHeight = $("footer").outerHeight()
+  //   $("body").css("padding-bottom", footerHeight + "px")
+
+  //   if ($(".main-container").length > 0) {
+  //     var windowHeight = $(window).outerHeight()
+  //     $(".main-container").css("height", (windowHeight - navbarHeight - footerHeight + 1) + "px")
+  //   }
+  // });
+
 });
-*/
+
 window.$ = window.jQuery = require('jquery');
 require('packs/raty')

@@ -1,2 +1,29 @@
-<h1>Admin::EndUsers#edit</h1>
-<p>Find me in app/views/admin/end_users/edit.html.erb</p>
+<div class="container">
+  <%= render partial: 'layouts/error_message', locals: { model: @end_user } %>
+  <%= form_with model: @end_user ,url:admin_end_user_path(@end_user),local: true do|f| %>
+    <div class="mt-5">
+      <div class ="col-md-6 mx-auto d-block">
+        <p class="h4 text-center marker-border-blue">ユーザー情報</p>
+          <div class="text_left mb-3">
+            <%= f.label :name, class:"col-sm-3 col-form-label" %>
+            <%= f.text_field :name, autocomplete: "name", class:"form-control" %>
+          </div>
+          <div class="text_left mb-3">
+            <%= f.label :email, class:"col-sm-3 col-form-label" %>
+            <%= f.text_field :email, autocomplete: "email", class:"form-control" %>
+          </div>
+          <div class="text_left mb-3">
+            <p class>プロフィール画像</p>
+            <%= f.file_field :end_user_image, accept: "image/*" %>
+          </div>
+          <%= f.radio_button :is_deleted, 'false' ,class: "my-2"%>
+          <%= f.label :is_deleted, '利用可', value: false ,class: "my-2" %>
+          <%= f.radio_button :is_deleted, 'true',class: "my-2" %>
+          <%= f.label :is_deleted, 'アカウント停止中', value: true ,class: "my-2"%><br>
+      </div>
+    </div>
+    <div class="col-md-3 mx-auto d-block mt-5">
+       <%= f.submit "変更内容を保存", class:"btn btn-secondary btn-block btn-sm" %>
+    </div>
+  <% end %>
+</div>

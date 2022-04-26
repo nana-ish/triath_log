@@ -1,7 +1,7 @@
-class ReceFavorite < ApplicationRecord
+class RaceFavorite < ApplicationRecord
 
   #ER図参照
-  belongs_to:rece
+  belongs_to:race
   belongs_to:end_user
 
   def get_review_image(width, height)

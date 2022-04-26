@@ -1,12 +1,16 @@
 <div class="container">
-  <div class="row mt-5">
+  <% unless end_user_signed_in? %>
+    <%= link_to 'ゲストログインはこちら（閲覧用）', public_guest_sign_in_path, method: :post ,class: "mt-4 btn btn-info"%>
+  <% end %>
+  <%= image_tag 'top.png', class: 'img-fluid my-3' %>
+  <div class="row mt-2">
     <% if end_user_signed_in? %>
-    <div class="col-md-3 mt-1"><%= render "end_user_info",end_user: @end_user %></div>
-    <div class="col-md-9">
+      <div class="col-md-3 mt-1"><%= render "end_user_info",end_user: @end_user %></div>
+      <div class="col-md-9">
     <%elsif%>
-    <div class="col-md-12">
+      <div class="col-md-12">
     <%end%>
-      <p class="text-center marker-border-blue h3">今年度の開催レース</h>
+      <p class="text-center marker-border-blue h3">今年度の開催レース</p>
       <table class="table mt-4">
         <thead>
           <tr>
@@ -19,26 +23,26 @@
         </thead>
         <tbody>
           <% @races.each do |race| %>
-          <tr>
-            <td class="text-center"><%= race.date.strftime('%Y/%m/%d') %></td>
-            <td class="text-center"><%= link_to race.name,race.link %></td>
-            <% if race.get_race_situation(race) == "0" %>
-              <td class="text-center">申し込み受付中</td>
+           <% if race.is_active == true %>
+            <tr>
+              <td class="text-center"><%= race.date.strftime('%Y/%m/%d') %></td>
+              <td class="text-center"><%= link_to race.name,race.link %></td>
+              <% if race.get_race_situation(race) == "0" %>
+                <td class="text-center">申し込み受付中</td>
+              <% end %>
+              <% if race.get_race_situation(race) == "1" %>
+                <td class="text-center">申し込み終了</td>
+              <% end %>
+              <% if race.get_race_situation(race) == "2" %>
+                <td class="text-center">大会終了</td>
+              <% end %>
+              <td class="text-center"><%=link_to "過去のレビューを見る",review_path(race),class: "btn btn-sm btn-outline-info" %></td>
+            </tr>
             <% end %>
-            <% if race.get_race_situation(race) == "1" %>
-              <td class="text-center">申し込み終了</td>
-            <% end %>
-            <% if race.get_race_situation(race) == "2" %>
-              <td class="text-center">大会終了</td>
-            <% end %>
-            <td class="text-center"><%=link_to "過去のレビューを見る",review_path(race),class: "btn btn-outline-primary" %></td>
-            <% if race.get_race_situation(race) == "2" %>
-              <td class="text-center"><%=link_to "レビューを書く",new_review_path %></td>
-            <% end %>
-          </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+

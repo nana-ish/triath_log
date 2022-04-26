@@ -1,11 +1,35 @@
 <!--全ての平均評価-->
-<p class="text-left">総合評価：<span id="ave-score-rate-<%= race.id %>"></span></p>
-<p class="text-left">大会レベル：初心者 <span id="ave-level-rate-<%= race.id %>"></span>上級者</p>
-<p class="text-left">コースの起伏：平坦<span id="ave-course-rate-<%= race.id %>"></span>激しい</p>
-<p class="text-left">水質：濁りあり<span id="ave-water-rate-<%= race.id %>"></span>綺麗</p>
-<p class="text-left">観光：少ない<span id="ave-sightseeing-rate-<%= race.id %>"></span>多い</p>
-
-
+<div class ="text-center">
+  <p class>平均総合評価：<span id="ave-score-rate-<%= race.id %>"></span> (<%=ave_score.round(2)%>点)</p>
+  <table class="table table-borderless">
+  <tbody>
+    <tr>
+      <th scope="row">レベル</th>
+       <td>初心者向け</td>
+       <td><span id="ave-level-rate-<%= race.id %>"></span></td>
+       <td>上級者向け</td>
+    </tr>
+    <tr>
+      <th scope="row">コース</th>
+      <td>平坦</td>
+      <td><span id="ave-course-rate-<%= race.id %>"></span></td>
+      <td>起伏あり</td>
+    </tr>
+    <tr>
+      <th scope="row">水質</th>
+      <td>濁りなし</td>
+      <td><span id="ave-water-rate-<%= race.id %>"></span></td>
+      <td>濁りあり</td>
+    </tr>
+    <tr>
+      <th scope="row">観光</th>
+      <td>少ない</td>
+      <td><span id="ave-sightseeing-rate-<%= race.id %>"></span></td>
+      <td>多い</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
 <script>
 document.addEventListener("turbolinks:load", function(){
       $('#ave-score-rate-<%= race.id %>').empty();
@@ -21,9 +45,9 @@ document.addEventListener("turbolinks:load", function(){
       $('#ave-level-rate-<%= race.id %>').empty();
       $('#ave-level-rate-<%= race.id %>').raty({
           size: 36,
-          starOff: "<%= asset_path('star-off.png') %>",
-          starOn: "<%= asset_path('star-on.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
+          starOff: "<%= asset_path('review-off.png') %>",
+          starOn: "<%= asset_path('review-on.png') %>",
+          starHalf: "<%= asset_path('review-half.png') %>",
           half: true,
           readOnly: true,
           score: <%= ave_level %>,
@@ -31,9 +55,9 @@ document.addEventListener("turbolinks:load", function(){
       $('#ave-course-rate-<%= race.id %>').empty();
       $('#ave-course-rate-<%= race.id %>').raty({
           size: 36,
-          starOff: "<%= asset_path('star-off.png') %>",
-          starOn: "<%= asset_path('star-on.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
+          starOff: "<%= asset_path('review-off.png') %>",
+          starOn: "<%= asset_path('review-on.png') %>",
+          starHalf: "<%= asset_path('review-half.png') %>",
           half: true,
           readOnly: true,
           score: <%= ave_course %>,
@@ -41,9 +65,9 @@ document.addEventListener("turbolinks:load", function(){
       $('#ave-water-rate-<%= race.id %>').empty();
       $('#ave-water-rate-<%= race.id %>').raty({
           size: 36,
-          starOff: "<%= asset_path('star-off.png') %>",
-          starOn: "<%= asset_path('star-on.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
+          starOff: "<%= asset_path('review-off.png') %>",
+          starOn: "<%= asset_path('review-on.png') %>",
+          starHalf: "<%= asset_path('review-half.png') %>",
           half: true,
           readOnly: true,
           score: <%= ave_water %>,
@@ -51,9 +75,9 @@ document.addEventListener("turbolinks:load", function(){
       $('#ave-sightseeing-rate-<%= race.id %>').empty();
       $('#ave-sightseeing-rate-<%= race.id %>').raty({
           size: 36,
-          starOff: "<%= asset_path('star-off.png') %>",
-          starOn: "<%= asset_path('star-on.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
+          starOff: "<%= asset_path('review-off.png') %>",
+          starOn: "<%= asset_path('review-on.png') %>",
+          starHalf: "<%= asset_path('review-half.png') %>",
           half: true,
           readOnly: true,
           score: <%= ave_sightseeing %>,

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class=" col-4 my-5 mx-auto d-block">
+   <span class="h3 marker-border-blue">地域変更・削除フォーム</span>
+    <%= form_with model: @district, url:admin_district_path(@district) do |f| %>
+    <div><%= f.text_field :name ,class: " mt-5 form-group btn-block" %></div>
+    <div><%= f.submit "変更",class: "mt-2 btn btn-sm btn-info btn-block" %></div>
+    <% end %>
+    <div><%= link_to "削除する", admin_district_path(@district), class: "mt-4 btn btn-sm btn-danger btn-block",
+    method: :delete,"data-confirm" => "本当に削除しますか？" %></div>
+  </div>
+</div>
+

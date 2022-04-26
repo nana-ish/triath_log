@@ -1,0 +1,3 @@
+$('#review_comments_<%= @review.id %>').html("<%= j(render partial: "public/reviews/comments", locals: { review: @review }) %>")
+
+

@@ -1,9 +1,27 @@
-<div class="container about-container">
-  <div class="d-flex justify-content-center align-items-center flex-column w-100 h-100">
-    <h1>トライアスロンを始めよう!</h1>
-    <p>
-      誰もが最初は初心者<br>
-      青い海、澄んだ空気そんな最高地球を感じながら
-    </p>
+<div class ="main-container">
+  <div class="container about-container">
+    <div class="d-flex justify-content-center align-items-center flex-column w-100 h-100">
+      <p class="h1 text-white">トライアスロンを始めよう!</p>
+      <p class="text-white h5">
+        誰もが最初は初心者<br>
+        青い海、澄んだ空気そんな最高な地球を感じながら
+      </p>
+    </div>
   </div>
 </div>
+
+<style>
+.main-container {
+  background-image: url(<%= asset_path 'about.jpg' %>);
+  background-position: center center;
+  /* 画像をタイル状に繰り返し表示しない */
+  background-repeat: no-repeat;
+  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+  background-attachment: fixed;
+
+  /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+  background-size: cover;
+
+
+}
+</style>

@@ -15,19 +15,17 @@
         <div class="container">
           <div class="d-flex justify-content-between align-items-center w-lg-responsive">
             <div class="d-flex">
-              <a class="navbar-brand p-3" href="/"><%= image_tag 'logo_name.png', class: 'img-fluid' %></a>
-              <a class="navbar-brand p-3" href="/"><%= image_tag 'logo_pic.png', class: 'img-fluid' %></a>
-                <% if end_user_signed_in? %>
-                  <div class = "text-center">
-                    <p class><p>
-                    <p class><%#= current_end_user.name %><p>
-                  </div>
-                <% end %>
-                <% if admin_signed_in? %>
-                  <div class = "text-center">
-                    <p class>管理者専用<p>
-                  </div>
-                <% end %>
+              <%unless admin_signed_in? %>
+                <a class="navbar-brand p-3" href="/"><%= image_tag 'logo_name.png', class: 'img-fluid' %></a>
+                <a class="navbar-brand p-3" href="/"><%= image_tag 'logo_pic.png', class: 'img-fluid' %></a>
+              <% end %>
+              <% if admin_signed_in? %>
+                <a class="navbar-brand p-3" href="/admin"><%= image_tag 'logo_name.png', class: 'img-fluid' %></a>
+                <a class="navbar-brand p-3" href="/admin"><%= image_tag 'logo_pic.png', class: 'img-fluid' %></a>
+                <div class = "text-center my-auto">
+                  <p class>管理者専用</p>
+                </div>
+              <% end %>
             </div>
             <div>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,45 +37,45 @@
             <ul class="navbar-nav ml-auto">
               <% if end_user_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "　Home", root_path, class: 'nav-link text-dark' %>
+                  <%= link_to "Mypage", root_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　About", about_path, class: 'nav-link text-dark' %>
+                  <%= link_to "About", about_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　Rece Reviews", reviews_path, class: 'nav-link text-dark' %>
+                  <%= link_to "Race Reviews", reviews_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link text-dark mx-1' %>
                 </li>
               <% elsif admin_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to " レース一覧", admin_root_path, class: 'nav-link text-dark' %>
+                  <%= link_to "レース一覧", admin_root_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　会員一覧", admin_end_users_path, class: 'nav-link text-dark' %>
+                  <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "レビュー一覧", admin_reviews_path, class: 'nav-link text-dark' %>
+                  <%= link_to "レビュー一覧", admin_reviews_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark mx-1' %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "　新規登録", new_end_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to "新規登録", new_end_user_registration_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　ログイン", new_end_user_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　Home", root_path, class: 'nav-link text-dark' %>
+                  <%= link_to "Home", root_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　About", about_path, class: 'nav-link text-dark' %>
+                  <%= link_to "About", about_path, class: 'nav-link text-dark mx-1' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "　Rece Reviews", reviews_path, class: 'nav-link text-dark' %>
+                  <%= link_to "Race Reviews", reviews_path, class: 'nav-link text-dark mx-1' %>
                 </li>
               <% end %>
             </ul>
@@ -86,16 +84,12 @@
       </nav>
     </header>
     <main class="mb-auto">
-    <p class="mt-2 ml-2"><%= notice %></p>
-    <%= yield %>
+      <%= notice %>
+      <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-3 pb-3 fixed-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7 d-flex justify-content-end align-items-center">
-            <h6 class="text-white mt-2 mb-2">Triath Log. All Rights Reserved.</h6>
-          </div>
-        </div>
+      <div class="text-center">
+          <h6 class="text-white mt-2 mb-2 ">Triath Log. All Rights Reserved.</h6>
       </div>
     </footer>
   </body>
