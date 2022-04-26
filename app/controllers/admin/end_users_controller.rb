@@ -17,7 +17,6 @@ class Admin::EndUsersController < ApplicationController
 
   def update
     @end_user = EndUser.find(params[:id])
-    redirect_to admin_end_users_path, notice: 'ゲストは変更・削除できません' if @end_user.email == 'guest@example.com'
     if @end_user.update(end_user_params)
       redirect_to admin_end_users_path, notice: '会員情報が正常に更新されました。'
     else
@@ -27,7 +26,10 @@ class Admin::EndUsersController < ApplicationController
 
   def destroy
     @end_user = EndUser.find(params[:id])
-    redirect_to admin_end_users_path, notice: 'ゲストは変更・削除できません' if @end_user.email == 'guest@example.com'
+    if @end_user.email == 'guest@example.com'
+      redirect_to admin_end_users_path, notice: 'ゲストは変更・削除できません'
+      return
+    end
     @end_user.destroy
     redirect_to  admin_end_users_path, notice: '正常に削除されました。'
   end
