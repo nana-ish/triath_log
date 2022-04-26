@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function() {
 
   // Header Auto Padding
   //リサイズされたときの処理
-  $(window).resize(function() {
+  $(window).on('load resize', function() {
     var navbarHeight = $(".navbar").outerHeight()
     $("body").css("padding-top", navbarHeight + "px")
     var footerHeight = $("footer").outerHeight()
