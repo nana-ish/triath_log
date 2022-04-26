@@ -13,7 +13,7 @@ class Review < ApplicationRecord
   validates :sightseeing, presence: true
   validates :title, presence: true
   validates :comment, presence: true
-  validates :race_id, presence: true
+  # validates :race_id, presence: true
 
   has_one_attached :review_image
 

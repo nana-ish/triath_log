@@ -36,8 +36,8 @@
         <% end %>
       </div>
       <div class="col-sm-12 col-lg-9 border mt-3 ">
-        <p class="text-left h4 mt-2 ml-3">
-          <%= review.title %>
+        <p class="text-left h4 mt-2 ml-3 ">
+          <span class ="marker-border-gold"><%= review.title %></span>
           <span id="favorite_buttons_<%= review.id %>">
             <%= render "public/review_favorites/review_favorite",review: review %>
           </span>

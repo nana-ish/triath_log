@@ -28,7 +28,7 @@ ja:
         introduction: "大会概要説明"
         race_image: "写真"
       review:
-        race_id: "大会名"
+        race: "大会名"
         score: "総合得点"
         level: "レベル"
         course: "コース"

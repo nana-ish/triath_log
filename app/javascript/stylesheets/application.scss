@@ -12,7 +12,10 @@ body {
 }
 
 .marker-border-blue{
-    background:linear-gradient(transparent 50%, #f0f8ff 0%);
+  background:linear-gradient(transparent 50%, #f0f8ff 0%);
+}
+.marker-border-gold{
+  background:linear-gradient(transparent 30%, #FFFFEE	 0%);
 }
 
 .under_line{
@@ -29,14 +32,18 @@ body {
     width: auto;
   }
 }
+
 @media screen and (max-width: 991.98px) {
+  body {
+    padding-top: 102px;
+    padding-bottom: 22px;
+  }
   .w-lg-responsive {
     width: 100%;
   }
    html{
       font-size: 10px;
   }
-  
   .table-wrap
   {
     width: 100%;
@@ -62,11 +69,7 @@ body {
   }
 
 }
-
 @media screen and (max-width: 575.98px) {
-  body {
-    padding-top: 100px;
-    padding-bottom: 67px;
-  }
+
 }
 

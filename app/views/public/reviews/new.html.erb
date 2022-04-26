@@ -1,13 +1,24 @@
 <%if current_end_user.is_deleted == false %>
 <div class="container">
   <div class="mx-auto d-block mt-1">
+      <%# binding.irb %>
       <p class ="h3 text-center marker-border-blue">レビュー投稿フォーム</p>
     <%= render partial: 'layouts/error_message', locals: { model: @review } %>
   </div>
   <div class="row">
     <div class="col-md-7 mx-auto d-block mt-2">
       <%= form_with model: @review ,url:reviews_path,local: true do|f| %>
-      <p><span class="mr-2 font-weight-bold">大会名 </span><%= f.collection_select :race_id ,Race.where(is_active: true), :id, :name ,include_blank:"選択して下さい"%></p>
+      <!--<p>-->
+        <!--<span class="mr-2 font-weight-bold">大会名 </span>-->
+      <%= f.label :race_id, '大会名', class: "font-weight-bold" %>
+      <%= f.collection_select :race_id,
+            Race.where(is_active: true),
+            :id,
+            :name,
+            { include_blank:"選択して下さい", selected: params[:race_id] },
+            { class: "form-control" }
+      %>
+      <!--</p>-->
       <table class="table-wrap table table-borderless">
       <tbody>
         <tr>

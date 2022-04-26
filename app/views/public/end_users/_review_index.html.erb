@@ -5,6 +5,9 @@
       <% else %>
          <%= link_to review.race.name,admin_review_path(review.race) %>
       <% end %>
+    </p>
+    <p class="text-center h5 mt-2 mx-3 ">
+      <span class="marker-border-gold"><%= review.title %></span>
     <!--お気に入り-->
       <% if end_user_signed_in? %>
         <span id="favorite_buttons_<%= review.id %>">
@@ -13,13 +16,15 @@
       <% end %>
     <!--お気に入り 終わり-->
     </p>
-    <p class="h6 mx-3">投稿日：<%= review.created_at.strftime('%Y/%m/%d') %></p>
-    <p class="text-left h5 mt-2 mx-3"><%= review.title %></p>
+    <p class="h6 mx-3 text-right">
+      投稿日：<%= review.created_at.strftime('%Y/%m/%d') %>
+      <span class="mx-3">投稿者：<%=link_to review.end_user.name,end_user_path(review.end_user) %></span>
+    </p>
     <div class ="row">
       <div class="col-md-7">
        <%= render "public/reviews/personal_star" ,review: review %>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5 my-2">
          <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
       </div>
     </div>

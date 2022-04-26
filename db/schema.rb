@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_04_18_090158) do
     t.integer "district_id"
     t.string "name"
     t.date "date"
-    t.integer "cost"
+    t.string "cost"
     t.date "deadline"
     t.text "link"
     t.string "categorie"

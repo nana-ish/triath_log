@@ -4,15 +4,16 @@
      <%= image_tag race.get_race_image(200,200),class: "mx-auto d-block" %>
     </div>
     <div class="col-md-8">
-      <p class="h5 text-center mt-4">
+      <p class="h5 text-center mt-3">
         <% if admin_signed_in? %>
           <%= link_to race.name,admin_review_path(race) %>
           <%= link_to "大会情報を変更する",edit_admin_race_path(race),class: "btn btn-sm btn-outline-info"%>
         <% elsif end_user_signed_in? %>
-           <%= link_to race.name,review_path(race) %>
-           <span id="favorite_buttons_<%= race.id %>">
+          <%= link_to race.name,review_path(race) %><br>
+          <span id="favorite_buttons_<%= race.id %>">
             <%= render "public/race_favorites/race_favorite", race: race %>
-           </span>
+          </span>
+          <%=link_to "レビューを書く",new_review_path(race_id: race.id), class: "btn btn-sm btn-primary mx-2 my-3" %>
         <% else %>
           <%= link_to race.name,new_end_user_session_path %>
         <% end %>
