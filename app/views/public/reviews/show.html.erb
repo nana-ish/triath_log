@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 mt-5">
-      <p class="text-center marker-border-blue"><span class="h4"><%= @race.name %></span>(<%= @reviews.count %>件のレビュー)</p>
+      <p class="text-center marker-border-blue">
+        <span class="h4"><%= @race.name %></span>(<%= @reviews.count %>件のレビュー)
+      </p>
     </div>
   </div>
   <!--レビュー平均始め-->
@@ -24,40 +26,38 @@
   <!--個人レビュー始め-->
   <div class ="row">
     <% @reviews.each do |review| %>
-      <div class="col-sm-12 col-lg-3 border mt-3">
-        <%= image_tag review.end_user.get_end_user_image(180,180), class: "mx-auto d-block mt-3"%>
-        <p class="text-center"><%= link_to review.end_user.name,end_user_path(review.end_user) %>さん</p>
-        <p class="text-center">投稿日:<%= review.created_at.strftime('%Y/%m/%d')%></p>
-        <% if review.end_user == current_end_user %>
-          <p><%= link_to "投稿を編集する",edit_review_path(review),class: "btn btn-sm btn-outline-secondary btn-block"%><p>
-          <p><%= link_to "投稿を削除する",review_path(review), class: "btn btn-sm btn-outline-danger btn-block",
-              method: :delete, "data-confirm" => "本当に削除しますか？" %>
-          </p>
-        <% end %>
-      </div>
-      <div class="col-sm-12 col-lg-9 border mt-3 ">
-        <p class="text-left h4 mt-2 ml-3 ">
+      <div class="col-sm-12 col-lg-12 border mt-3 ">
+        <p class="text-center h4 mt-4 ml-3 ">
           <span class ="marker-border-gold"><%= review.title %></span>
           <span id="favorite_buttons_<%= review.id %>">
             <%= render "public/review_favorites/review_favorite",review: review %>
           </span>
+          <% if review.end_user == current_end_user %>
+            <%= link_to "投稿を編集する",edit_review_path(review),class: "btn btn-sm  btn-secondary mx-1 my-2 "%>
+            <%= link_to "投稿を削除する",review_path(review), class: "btn btn-sm btn-danger mx-1 my-2",
+                method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          <% end %>
+        </p>
+        <p class= "text-right mx-5">
+          投稿日：<%= review.created_at.strftime('%Y/%m/%d')%>
+          <span class="ml-1"><%= link_to review.end_user.name,end_user_path(review.end_user) %>さん</span>
         </p>
         <div class ="row">
           <div class="col-md-7">
             <%= render "personal_star",review: review %>
+            <p class="text-left mx-2"><%= review.comment %></p>
           </div>
           <div class="col-md-5">
-            <%= image_tag review.get_review_image(240,240), class: "mx-auto d-block"%>
+            <%= image_tag review.review_image, class: "img-fluid my-3 px-2" %>
           </div>
         </div>
-        <p class="text-left mx-2"><%= review.comment %></p>
         <hr>
         <div id="review_comments_<%= review.id %>">
           <!--コメント一覧-->
           <%= render partial: 'comments', locals: { review: review } %>
         </div>
-          <!--コメント入力-->
-        <% if current_end_user.is_deleted == false%>
+      <!--コメント入力-->
+        <% if current_end_user.is_deleted == false %>
           <%= form_with model: ReviewComment,url:review_review_comments_path(review), local: false do|f| %>
             <div class="row mb-2">
               <div class="col-md-10">
