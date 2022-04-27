@@ -3,21 +3,23 @@
   <div class="row">
     <div class="col-md-5">
       <div class="center">
-        <%= image_tag @race.get_race_image(350,350) %>
+        <%= image_tag @race.race_image, class: 'img-fluid my-3'%>
       </div>
     </div>
     <div class="col-md-7 mt-2">
-      <p class="text-left">開催予定日：<%= @race.date.strftime('%Y/%m/%d') %></p>
-      <p class="text-left">申し込み締め切り日：<%= @race.deadline.strftime('%Y/%m/%d') %></p>
-      <p class="text-left">開催地：<%= @race.venue %></p>
-      <p class="text-left">地域：<%= @race.district.name %></p>
-      <p class="text-left">出場費(税込み)：<%= @race.cost %> 円</p>
-      <p class="text-left">開催種目：<%= @race.categorie %></p>
-      <p class="text-left">公式サイト：<%= link_to @race.link,@race.link %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">大会名：</span><%= @race.name %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">地域：</span><%= @race.district.name %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">大会開催日：</span><%= @race.date.strftime('%Y/%m/%d') %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">申し込み締め切り日：</span><%= @race.deadline.strftime('%Y/%m/%d') %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">出場費(税込み)：</span><%= @race.cost %> 円</p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">公式サイト：</span><%= link_to @race.link,@race.link %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">開催種目：</span><%= @race.categorie %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">開催地：</span><%= @race.venue %></p>
+      <p class="text-left"><span class ="font-weight-bold mr-2">大会概要説明：</span><br><%= @race.introduction %></p>
       <% if @race.is_active == true %>
-        <p class="text-left">公開ステータス：公開中</p>
+        <p class="text-left"><span class ="font-weight-bold mr-2">公開ステータス：</span>公開中</p>
       <% else %>
-        <p class="text-left">公開ステータス：非公開中</p>
+        <p class="text-left"><span class ="font-weight-bold mr-2">公開ステータス：</span>非公開中</p>
       <% end %>
     </div>
   </div>
