@@ -1,7 +1,7 @@
 class Public::ReviewsController < ApplicationController
 
   before_action :autheniticate_end_user, {only: [:new,:show,:create,:edit,:update,:destroy]}
-  
+
   def new
     @review = Review.new
     @end_user = current_end_user
@@ -14,9 +14,9 @@ class Public::ReviewsController < ApplicationController
     @district = District.new
     if params[:district_id]
        @district = District.find(params[:district_id])
-       @races = @district.races.left_joins(:reviews).group(:id).order("AVG(reviews.score) desc").page(params[:page]).per(3)
+       @races = @district.races.left_joins(:reviews).group(:id).order("AVG(reviews.score) desc")
     else
-      @races = Race.left_joins(:reviews).group(:id).order("AVG(reviews.score) desc").page(params[:page]).per(3)
+      @races = Race.left_joins(:reviews).group(:id).order("AVG(reviews.score) desc")
     end
   end
 
