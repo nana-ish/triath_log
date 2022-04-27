@@ -4,10 +4,10 @@
       <%= image_tag race.race_image,class: "img-fluid " %>
     </div>
     <div class="col-md-6">
-      <p class="h5 text-left mt-3 mx-3">
+      <p class="h5 text-center mt-3 mx-3">
         <% if admin_signed_in? %>
-          <%= link_to race.name,admin_review_path(race) %>
-          <%= link_to "大会情報を変更する",edit_admin_race_path(race),class: "btn btn-sm btn-outline-info"%>
+          <%= link_to race.name,admin_review_path(race) %><br>
+          <%= link_to "大会情報を変更する",edit_admin_race_path(race),class: "btn btn-sm btn-outline-info my-1"%>
         <% elsif end_user_signed_in? %>
           <%= link_to race.name,review_path(race) %><br>
           <span id="favorite_buttons_<%= race.id %>">
