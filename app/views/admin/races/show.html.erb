@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-5">
       <div class="center">
-        <%= image_tag @race.race_image, class: 'img-fluid my-3'%>
+        <%= image_tag @race.get_race_image(400,400), class: 'd-block mx-auto'%>
       </div>
     </div>
     <div class="col-md-7 mt-2">
