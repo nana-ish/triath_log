@@ -1,3 +1,4 @@
+<%if current_end_user.is_deleted == false %>
 <div class="container">
   <%= render partial: 'layouts/error_message', locals: { model: @end_user } %>
   <%= form_with model: @end_user ,url:end_user_path,local: true do|f| %>
@@ -22,9 +23,17 @@
        <%= f.submit "変更内容を保存", class:"btn btn-secondary btn-block btn-sm" %>
     </div>
   <% end %>
-
   <div class="col-md-3 mx-auto d-block mt-5">
     <%= link_to "アカウントを削除",end_user_path(@end_user), class: "btn btn-sm btn-danger btn-block ",
          method: :delete, "data-confirm" => "本当に削除しますか？" %>
    </div>
 </div>
+<% else%>
+<div class="container">
+  <div class="mx-auto d-block mt-5">
+      <p class ="h4 text-center">このUserは管理者によってアカウントが停止されたため、<br>
+      アカウントの変更はできません。</p>
+      <p class="text-center"><%=link_to "戻る",root_path,class: "my-2 btn btn-primary"%></p>
+  <div>
+</div>
+<% end %>
