@@ -33,8 +33,8 @@
             <%= render "public/review_favorites/review_favorite",review: review %>
           </span>
           <% if review.end_user == current_end_user %>
-            <%= link_to "投稿を編集する",edit_review_path(review),class: "btn btn-sm  btn-secondary mx-1 my-2 "%>
-            <%= link_to "投稿を削除する",review_path(review), class: "btn btn-sm btn-danger mx-1 my-2",
+            <%= link_to "投稿を編集する",edit_review_path(review),class: "btn  btn-secondary ml-5 my-2 "%>
+            <%= link_to "投稿を削除する",review_path(review), class: "btn  btn-danger mx-2 my-2",
                 method: :delete, "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </p>
