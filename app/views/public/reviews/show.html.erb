@@ -48,7 +48,7 @@
             <p class="text-left mx-2"><%= review.comment %></p>
           </div>
           <div class="col-md-5">
-            <%= image_tag review.review_image, class: "img-fluid my-3 px-2" %>
+            <%= image_tag review.get_review_image(400,400), class: "d-block mx-auto" %>
           </div>
         </div>
         <hr>
