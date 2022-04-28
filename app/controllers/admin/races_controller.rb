@@ -35,6 +35,16 @@ class Admin::RacesController < ApplicationController
     end
   end
 
+  def destroy
+    race = Race.find(params[:id])
+    race.destroy
+    if race.destroy
+      redirect_to request.referer, notice: "削除されました。"
+    else
+      redirect_to  request.referer ,notice: "削除に失敗しました。"
+    end
+  end
+
   private
 
   def race_params

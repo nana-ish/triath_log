@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 # 管理者用各機能ルーティング
   namespace :admin do
     root to: "homes#top"
-    resources :races,only:[:new,:show,:edit,:create,:update]
+    resources :races,only:[:new,:show,:edit,:create,:update,:destroy]
     resources :end_users,only:[:show,:index,:edit,:update]
     resources :districts,only:[:create,:edit,:update,:destroy]
     resources :reviews,only:[:index,:show,:destroy]do
