@@ -50,7 +50,7 @@ class Public::ReviewsController < ApplicationController
     if review.destroy
       redirect_to review_path(review.race), notice: "レビューが削除されました。"
     else
-      render :show,notice: "削除に失敗しました。"
+      render :show, notice: "削除に失敗しました。"
     end
   end
 
