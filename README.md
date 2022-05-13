@@ -1,7 +1,6 @@
 # triath_log
 
 ## サイト概要
-![スクリーンショット 2022-04-29 16 33 58](https://user-images.githubusercontent.com/98141372/168282719-856ab87c-5fbb-4e45-8330-4eb47d98d496.png)
 
 トライアスリートが、今後出場する大会を決めるための情報収集サイト
 
@@ -20,8 +19,12 @@
 トライアスリート全般
 
 ### 主な利用シーン
-
 これからトライアスロンの出場する大会を決めるとき。
+
+### イメージ
+![大会一覧](https://user-images.githubusercontent.com/98141372/168288726-34f3eec0-dc87-4f01-bd24-e81302b2ee26.png)
+
+![レビュー詳細](https://user-images.githubusercontent.com/98141372/168288859-b286bf87-0aef-4b0a-8bef-1f07c1c75bdb.png)
 
 ## 設計書
  ・ER図
