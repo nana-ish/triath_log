@@ -21,9 +21,10 @@
 ### 主な利用シーン
 これからトライアスロンの出場する大会を決めるとき。
 
-### イメージ
+### イメージ1
 ![大会一覧](https://user-images.githubusercontent.com/98141372/168288726-34f3eec0-dc87-4f01-bd24-e81302b2ee26.png)
 
+### イメージ2
 ![レビュー詳細](https://user-images.githubusercontent.com/98141372/168288859-b286bf87-0aef-4b0a-8bef-1f07c1c75bdb.png)
 
 ## 設計書
