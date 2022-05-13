@@ -1,6 +1,7 @@
 # triath_log
 
 ## サイト概要
+![スクリーンショット 2022-04-29 16 33 58](https://user-images.githubusercontent.com/98141372/168282719-856ab87c-5fbb-4e45-8330-4eb47d98d496.png)
 
 トライアスリートが、今後出場する大会を決めるための情報収集サイト
 
@@ -49,3 +50,5 @@
 
 ・photo AC
 <https://www.photo-ac.com/main/search?q=%E3%83%88%E3%83%A9%E3%82%A4%E3%82%A2%E3%82%B9%E3%83%AD%E3%83%B3&srt=dlrank&qt=&pp=70&p=1&pt=C>
+
+
